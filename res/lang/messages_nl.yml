@@ -1,0 +1,133 @@
+# XpTresor - Nederlandse berichten. Kleuren: &a &l ... en &#rrggbb. Lege tekst = bericht wordt niet verstuurd.
+prefix: "&8[&bXP-kluis&8] &r"
+
+players-only: "&cAlleen spelers kunnen dat doen."
+no-permission: "&cDaar heb je geen toestemming voor."
+unknown-command: "&cOnbekend commando. &7/{cmd} help"
+number-invalid: "&cVoer een geldig getal in."
+player-unknown: "&cSpeler &e{player}&c heeft geen account."
+
+usage:
+  deposit: "&7Gebruik: &e/{cmd} deposit <levels|XPp|all>"
+  withdraw: "&7Gebruik: &e/{cmd} withdraw <levels|XPp|all>"
+  send: "&7Gebruik: &e/{cmd} send <speler> <levels|XPp|all>"
+  auto: "&7Gebruik: &e/{cmd} auto [on|off|<level>]"
+  repair: "&7Gebruik: &e/{cmd} repair [all]"
+  info: "&7Gebruik: &e/{cmd} info <speler>"
+  balance: "&7Gebruik: &e/{cmd} balance <speler>"
+  admin: "&7Gebruik: &e/{cmd} admin <give|take|set> <speler> <levels|XPp>&7, &e/{cmd} admin reset <speler>&7, &e/{cmd} admin import"
+
+words:
+  enabled: "&aaan"
+  disabled: "&cuit"
+  positive: "&aja"
+  negative: "&cnee"
+  unlimited: "onbeperkt"
+  levels: "{levels} levels"
+  offline-default: "&8(offline: standaardlimiet)"
+
+balance:
+  self: "&7In je kluis: &a{levels} levels &8({xp} XP)"
+  self-details: "&7Nu op te nemen: &a+{now} levels &8| &7Limiet: &a{limit}"
+  other: "&e{player}&7 heeft &a{levels} levels &8({xp} XP)&7 in de kluis."
+
+deposit:
+  done: "&a{levels} levels &7gestort &8({xp} XP)&7. Kluis: &a{balance} levels"
+  partial: "&eDe kluis is nu vol: &a{levels} levels &7gestort &8({xp} XP)&7. Kluis: &a{balance} levels"
+  not-enough-levels: "&cJe hebt maar &e{levels} levels&c."
+  not-enough-points: "&cJe hebt maar &e{xp} XP&c."
+  nothing: "&cJe hebt geen XP om te storten."
+  minimum: "&cStort minstens &e{levels} levels &8({xp} XP)&c."
+  full: "&cJe kluis is vol &8(limiet {limit} levels)&c."
+  too-much: "&cDat past er niet meer in - nog ruimte voor &e{xp} XP&c. Tip: &e/xpt deposit all"
+
+withdraw:
+  done: "&a+{levels} levels &7opgenomen &8({xp} XP)&7. Kluis: &a{balance} levels"
+  empty: "&cJe kluis is leeg."
+  not-enough-levels: "&cNiet genoeg in de kluis - je kunt nu &e{max} levels&c opnemen."
+  not-enough-points: "&cDe kluis bevat maar &e{xp} XP&c."
+
+send:
+  done: "&7Je hebt &e{player} &a{xp} XP &8(≈{levels} levels)&7 gestuurd."
+  received: "&e{player} &7heeft &a{xp} XP &8(≈{levels} levels)&7 naar je kluis gestuurd."
+  self: "&cJe kunt geen XP naar jezelf sturen."
+  not-enough: "&cJe kluis bevat maar &e{levels} levels &8({xp} XP)&c."
+  receiver-full: "&cDe kluis van &e{player}&c is te vol - ruimte voor &e{free} XP&c."
+  offline-disabled: "&e{player}&c is offline."
+
+auto:
+  enabled: "&7Automatisch storten &aaan&7: vanaf level &a{level}&7 gaat je XP automatisch naar de kluis."
+  disabled: "&7Automatisch storten &cuit&7."
+  min: "&cHet laagst mogelijke level is &e{min}&c."
+  deposited: "&bAutomatisch storten: &a{levels} levels &8({xp} XP) &7→ kluis: &a{balance} levels"
+  full: "&eAutomatisch storten: je kluis is vol &8(limiet {limit} levels)&e."
+
+repair:
+  done: "&a{items} item(s) &7gerepareerd voor &a{xp} XP&7 uit je kluis."
+  partial: "&eNiet genoeg XP in de kluis - gedeeltelijk gerepareerd voor &a{xp} XP&e."
+  nothing: "&cEr valt niets te repareren."
+  no-mending: "&cAlleen items met &aHerstel (Mending)&c kunnen gerepareerd worden."
+  invalid: "&cHoud een beschadigd item vast."
+  armored-elytra: "&cGepantserde elytra's werken alleen als ArmoredElytra geïnstalleerd is - gebruik een aambeeld."
+  empty: "&cJe kluis is leeg."
+  disabled: "&cRepareren met XP staat uit."
+
+bottle:
+  done: "&a{amount} fles(sen) &7gevuld met elk &a{xp} XP &8(level 0→{levels})&7."
+  usage: "&7Gebruik: &e/{cmd} bottle <levels|XPp> [aantal]"
+  max: "&cMaximaal &e{max}&c flessen tegelijk."
+  not-enough: "&cJe hebt &e{needed} XP&c nodig, je kluis bevat &e{xp} XP&c."
+  dropped: "&eInventaris vol - een paar flessen liggen voor je voeten."
+  disabled: "&cXP-flessen staan uit."
+  name: "&bXP-fles &7({xp} XP)"
+  lore: "&7Bevat precies &a{xp} XP &7(level 0→{levels}). Gooi hem om de XP vrij te laten."
+
+top:
+  header: "&8&m------&r &bXP-kluis ranglijst &7({page}/{pages}) &8&m------"
+  line: "&7{rank}. &e{player} &8- &a{levels} levels &8({xp} XP)"
+  empty: "&7Nog niemand heeft XP in de kluis."
+
+info:
+  header: "&8&m------&r &bXP-kluis: &e{player} &8&m------"
+  balance: "&7Kluis: &a{levels} levels &8({xp} XP)"
+  limit: "&7Limiet: &a{limit}"
+  auto: "&7Automatisch storten: {state} &8(vanaf level {level})"
+  keepxp: "&7Houdt XP bij de dood: {state}"
+  imported: "&7Overgenomen uit XP-Deposit: {state}"
+  uuid: "&8{uuid}"
+
+admin:
+  give: "&e{player}&7 heeft &a+{xp} XP &8(level 0→{levels})&7 gekregen. Nu: &a{balance} levels"
+  take: "&c{xp} XP&7 afgenomen van &e{player}&7. Nu: &a{balance} levels"
+  set: "&7Kluis van &e{player}&7 ingesteld op &a{xp} XP &8({levels} levels)&7."
+  reset: "&7Kluis van &e{player}&7 geleegd."
+  not-enough: "&e{player}&c heeft maar &e{xp} XP&c in de kluis."
+  notify-give: "&e{by}&7 heeft &a{xp} XP&7 in je kluis gestopt."
+  notify-take: "&e{by}&7 heeft &c{xp} XP&7 uit je kluis gehaald."
+  notify-set: "&e{by}&7 heeft je kluis ingesteld op &a{xp} XP&7."
+  notify-reset: "&e{by}&7 heeft je kluis geleegd."
+
+import:
+  none: "&cGeen XP-Deposit-accounts gevonden &8({folder})&c."
+  preview: "&a{count} accounts &7gevonden met in totaal &a{xp} XP &8({already} al overgenomen)&7. Overnemen: &e/{cmd} admin import confirm"
+  done: "&a{imported} accounts overgenomen &8({xp} XP)&7, &e{skipped}&7 waren al overgenomen."
+
+reload: "&aConfiguratie en berichten herladen."
+
+help:
+  hint: "&8» &7Alle commando's: &e/{cmd} help"
+  header: "&8&m------&r &bXP-kluis &8&m------"
+  deposit: "&e/{cmd} deposit <hoeveelheid> &8- &7XP in de kluis stoppen"
+  withdraw: "&e/{cmd} withdraw <hoeveelheid> &8- &7XP uit de kluis halen"
+  balance: "&e/{cmd} balance [speler] &8- &7wat zit er in de kluis?"
+  top: "&e/{cmd} top [pagina] &8- &7ranglijst"
+  send: "&e/{cmd} send <speler> <hoeveelheid> &8- &7XP naar iemands kluis sturen"
+  auto: "&e/{cmd} auto [on|off|<level>] &8- &7automatisch storten vanaf een level"
+  repair: "&e/{cmd} repair [all] &8- &7items met Herstel repareren met kluis-XP"
+  bottle: "&e/{cmd} bottle <levels> [aantal] &8- &7XP in flessen doen"
+  amounts: "&8Hoeveelheid: &710 &8= levels, &7500p &8= XP-punten, &7all &8= alles"
+  admin-header: "&8&m------&r &cAdmin &8&m------"
+  info: "&e/{cmd} info <speler> &8- &7details van een account"
+  admin: "&e/{cmd} admin <give|take|set|reset> <speler> [hoeveelheid]"
+  import: "&e/{cmd} admin import &8- &7accounts uit XP-Deposit overnemen"
+  reload: "&e/{cmd} reload &8- &7configuratie herladen"

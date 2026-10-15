@@ -1,0 +1,133 @@
+# XpTresor - messaggi in italiano. Colori: &a &l ... e &#rrggbb. Testo vuoto = il messaggio non viene inviato.
+prefix: "&8[&bCassaforte XP&8] &r"
+
+players-only: "&cSolo i giocatori possono farlo."
+no-permission: "&cNon hai il permesso di farlo."
+unknown-command: "&cComando sconosciuto. &7/{cmd} help"
+number-invalid: "&cInserisci un numero valido."
+player-unknown: "&cIl giocatore &e{player}&c non ha un conto."
+
+usage:
+  deposit: "&7Uso: &e/{cmd} deposit <livelli|XPp|all>"
+  withdraw: "&7Uso: &e/{cmd} withdraw <livelli|XPp|all>"
+  send: "&7Uso: &e/{cmd} send <giocatore> <livelli|XPp|all>"
+  auto: "&7Uso: &e/{cmd} auto [on|off|<livello>]"
+  repair: "&7Uso: &e/{cmd} repair [all]"
+  info: "&7Uso: &e/{cmd} info <giocatore>"
+  balance: "&7Uso: &e/{cmd} balance <giocatore>"
+  admin: "&7Uso: &e/{cmd} admin <give|take|set> <giocatore> <livelli|XPp>&7, &e/{cmd} admin reset <giocatore>&7, &e/{cmd} admin import"
+
+words:
+  enabled: "&aattivo"
+  disabled: "&cdisattivo"
+  positive: "&asì"
+  negative: "&cno"
+  unlimited: "illimitato"
+  levels: "{levels} livelli"
+  offline-default: "&8(offline: limite predefinito)"
+
+balance:
+  self: "&7Nella tua cassaforte: &a{levels} livelli &8({xp} XP)"
+  self-details: "&7Prelevabile ora: &a+{now} livelli &8| &7Limite: &a{limit}"
+  other: "&e{player}&7 ha &a{levels} livelli &8({xp} XP)&7 nella cassaforte."
+
+deposit:
+  done: "&7Depositati &a{levels} livelli &8({xp} XP)&7. Cassaforte: &a{balance} livelli"
+  partial: "&eLa cassaforte è piena: depositati &a{levels} livelli &8({xp} XP)&7. Cassaforte: &a{balance} livelli"
+  not-enough-levels: "&cHai solo &e{levels} livelli&c."
+  not-enough-points: "&cHai solo &e{xp} XP&c."
+  nothing: "&cNon hai XP da depositare."
+  minimum: "&cDeposita almeno &e{levels} livelli &8({xp} XP)&c."
+  full: "&cLa tua cassaforte è piena &8(limite {limit} livelli)&c."
+  too-much: "&cNon ci sta più - c'è spazio per &e{xp} XP&c. Consiglio: &e/xpt deposit all"
+
+withdraw:
+  done: "&7Prelevati &a+{levels} livelli &8({xp} XP)&7. Cassaforte: &a{balance} livelli"
+  empty: "&cLa tua cassaforte è vuota."
+  not-enough-levels: "&cNon c'è abbastanza nella cassaforte - ora puoi prelevare &e{max} livelli&c."
+  not-enough-points: "&cLa cassaforte contiene solo &e{xp} XP&c."
+
+send:
+  done: "&7Hai inviato &a{xp} XP &8(≈{levels} livelli)&7 a &e{player}&7."
+  received: "&e{player} &7ha inviato &a{xp} XP &8(≈{levels} livelli)&7 nella tua cassaforte."
+  self: "&cNon puoi inviare XP a te stesso."
+  not-enough: "&cLa tua cassaforte contiene solo &e{levels} livelli &8({xp} XP)&c."
+  receiver-full: "&cLa cassaforte di &e{player}&c è troppo piena - spazio per &e{free} XP&c."
+  offline-disabled: "&e{player}&c è offline."
+
+auto:
+  enabled: "&7Deposito automatico &aattivo&7: dal livello &a{level}&7 la tua XP va automaticamente nella cassaforte."
+  disabled: "&7Deposito automatico &cdisattivo&7."
+  min: "&cIl livello più basso possibile è &e{min}&c."
+  deposited: "&bDeposito automatico: &a{levels} livelli &8({xp} XP) &7→ cassaforte: &a{balance} livelli"
+  full: "&eDeposito automatico: la tua cassaforte è piena &8(limite {limit} livelli)&e."
+
+repair:
+  done: "&7Riparati &a{items} oggetto/i&7 per &a{xp} XP&7 dalla cassaforte."
+  partial: "&eXP insufficiente nella cassaforte - riparato in parte per &a{xp} XP&e."
+  nothing: "&cNon c'è niente da riparare."
+  no-mending: "&cSi possono riparare solo oggetti con &aRiparazione (Mending)&c."
+  invalid: "&cTieni in mano un oggetto danneggiato."
+  armored-elytra: "&cLe elitre corazzate funzionano solo con ArmoredElytra installato - usa un'incudine."
+  empty: "&cLa tua cassaforte è vuota."
+  disabled: "&cLa riparazione con XP è disattivata."
+
+bottle:
+  done: "&7Riempite &a{amount} bottiglia/e&7 con &a{xp} XP &8(livello 0→{levels})&7 ciascuna."
+  usage: "&7Uso: &e/{cmd} bottle <livelli|XPp> [quantità]"
+  max: "&cAl massimo &e{max}&c bottiglie alla volta."
+  not-enough: "&cTi servono &e{needed} XP&c, la cassaforte contiene &e{xp} XP&c."
+  dropped: "&eInventario pieno - alcune bottiglie sono cadute ai tuoi piedi."
+  disabled: "&cLe bottiglie di XP sono disattivate."
+  name: "&bBottiglia di XP &7({xp} XP)"
+  lore: "&7Contiene esattamente &a{xp} XP &7(livello 0→{levels}). Lanciala per liberare la XP."
+
+top:
+  header: "&8&m------&r &bClassifica cassaforti XP &7({page}/{pages}) &8&m------"
+  line: "&7{rank}. &e{player} &8- &a{levels} livelli &8({xp} XP)"
+  empty: "&7Nessuno ha ancora XP nella cassaforte."
+
+info:
+  header: "&8&m------&r &bCassaforte XP: &e{player} &8&m------"
+  balance: "&7Cassaforte: &a{levels} livelli &8({xp} XP)"
+  limit: "&7Limite: &a{limit}"
+  auto: "&7Deposito automatico: {state} &8(dal livello {level})"
+  keepxp: "&7Mantiene la XP alla morte: {state}"
+  imported: "&7Importato da XP-Deposit: {state}"
+  uuid: "&8{uuid}"
+
+admin:
+  give: "&e{player}&7 ha ricevuto &a+{xp} XP &8(livello 0→{levels})&7. Ora: &a{balance} livelli"
+  take: "&7Tolti &c{xp} XP&7 a &e{player}&7. Ora: &a{balance} livelli"
+  set: "&7Cassaforte di &e{player}&7 impostata a &a{xp} XP &8({levels} livelli)&7."
+  reset: "&7Cassaforte di &e{player}&7 svuotata."
+  not-enough: "&e{player}&c ha solo &e{xp} XP&c nella cassaforte."
+  notify-give: "&e{by}&7 ha messo &a{xp} XP&7 nella tua cassaforte."
+  notify-take: "&e{by}&7 ha tolto &c{xp} XP&7 dalla tua cassaforte."
+  notify-set: "&e{by}&7 ha impostato la tua cassaforte a &a{xp} XP&7."
+  notify-reset: "&e{by}&7 ha svuotato la tua cassaforte."
+
+import:
+  none: "&cNessun conto XP-Deposit trovato &8({folder})&c."
+  preview: "&7Trovati &a{count} conti &7con &a{xp} XP &7in totale &8({already} già importati)&7. Per importare: &e/{cmd} admin import confirm"
+  done: "&aImportati {imported} conti &8({xp} XP)&7, &e{skipped}&7 erano già importati."
+
+reload: "&aConfigurazione e messaggi ricaricati."
+
+help:
+  hint: "&8» &7Tutti i comandi: &e/{cmd} help"
+  header: "&8&m------&r &bCassaforte XP &8&m------"
+  deposit: "&e/{cmd} deposit <quantità> &8- &7metti XP nella cassaforte"
+  withdraw: "&e/{cmd} withdraw <quantità> &8- &7preleva XP dalla cassaforte"
+  balance: "&e/{cmd} balance [giocatore] &8- &7cosa c'è nella cassaforte?"
+  top: "&e/{cmd} top [pagina] &8- &7classifica"
+  send: "&e/{cmd} send <giocatore> <quantità> &8- &7invia XP nella cassaforte di qualcuno"
+  auto: "&e/{cmd} auto [on|off|<livello>] &8- &7deposita automaticamente da un livello in poi"
+  repair: "&e/{cmd} repair [all] &8- &7ripara oggetti con Riparazione usando la XP della cassaforte"
+  bottle: "&e/{cmd} bottle <livelli> [quantità] &8- &7riempi bottiglie di XP"
+  amounts: "&8Quantità: &710 &8= livelli, &7500p &8= punti XP, &7all &8= tutto"
+  admin-header: "&8&m------&r &cAdmin &8&m------"
+  info: "&e/{cmd} info <giocatore> &8- &7dettagli di un conto"
+  admin: "&e/{cmd} admin <give|take|set|reset> <giocatore> [quantità]"
+  import: "&e/{cmd} admin import &8- &7importa i conti di XP-Deposit"
+  reload: "&e/{cmd} reload &8- &7ricarica la configurazione"

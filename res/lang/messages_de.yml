@@ -1,0 +1,133 @@
+# XpTresor - deutsche Texte. Farben: &a &l ... und &#rrggbb. Leerer Text = Nachricht wird nicht gesendet.
+prefix: "&8[&bXP-Tresor&8] &r"
+
+players-only: "&cDas geht nur als Spieler."
+no-permission: "&cDafür hast du keine Berechtigung."
+unknown-command: "&cUnbekannter Befehl. &7/{cmd} hilfe"
+number-invalid: "&cBitte eine gültige Zahl angeben."
+player-unknown: "&cSpieler &e{player}&c hat kein Konto."
+
+usage:
+  deposit: "&7Benutzung: &e/{cmd} einzahlen <Level|XPp|alles>"
+  withdraw: "&7Benutzung: &e/{cmd} abheben <Level|XPp|alles>"
+  send: "&7Benutzung: &e/{cmd} senden <Spieler> <Level|XPp|alles>"
+  auto: "&7Benutzung: &e/{cmd} auto [an|aus|<Level>]"
+  repair: "&7Benutzung: &e/{cmd} reparieren [alle]"
+  info: "&7Benutzung: &e/{cmd} info <Spieler>"
+  balance: "&7Benutzung: &e/{cmd} kontostand <Spieler>"
+  admin: "&7Benutzung: &e/{cmd} admin <give|take|set> <Spieler> <Level|XPp>&7, &e/{cmd} admin reset <Spieler>&7, &e/{cmd} admin import"
+
+words:
+  enabled: "&aan"
+  disabled: "&caus"
+  positive: "&aja"
+  negative: "&cnein"
+  unlimited: "unbegrenzt"
+  levels: "{levels} Level"
+  offline-default: "&8(offline: Standard-Limit)"
+
+balance:
+  self: "&7Im Tresor: &a{levels} Level &8({xp} XP)"
+  self-details: "&7Jetzt abhebbar: &a+{now} Level &8| &7Limit: &a{limit}"
+  other: "&e{player}&7 hat &a{levels} Level &8({xp} XP)&7 im Tresor."
+
+deposit:
+  done: "&a{levels} Level &7eingezahlt &8({xp} XP)&7. Im Tresor: &a{balance} Level"
+  partial: "&eTresor jetzt voll: &a{levels} Level &7eingezahlt &8({xp} XP)&7. Im Tresor: &a{balance} Level"
+  not-enough-levels: "&cDu hast nur &e{levels} Level&c."
+  not-enough-points: "&cDu hast nur &e{xp} XP&c."
+  nothing: "&cDu hast keine XP zum Einzahlen."
+  minimum: "&cMindestens &e{levels} Level &8({xp} XP)&c einzahlen."
+  full: "&cDein Tresor ist voll &8(Limit {limit} Level)&c."
+  too-much: "&cSo viel passt nicht mehr rein - noch Platz für &e{xp} XP&c. Tipp: &e/xpt einzahlen alles"
+
+withdraw:
+  done: "&a+{levels} Level &7abgehoben &8({xp} XP)&7. Im Tresor: &a{balance} Level"
+  empty: "&cDein Tresor ist leer."
+  not-enough-levels: "&cSo viel ist nicht drin - du kannst gerade &e{max} Level&c abheben."
+  not-enough-points: "&cIm Tresor sind nur &e{xp} XP&c."
+
+send:
+  done: "&7Du hast &e{player} &a{xp} XP &8(≈{levels} Level)&7 geschickt."
+  received: "&e{player} &7hat dir &a{xp} XP &8(≈{levels} Level)&7 in den Tresor geschickt."
+  self: "&cDu kannst dir nicht selbst XP schicken."
+  not-enough: "&cIm Tresor sind nur &e{levels} Level &8({xp} XP)&c."
+  receiver-full: "&cDer Tresor von &e{player}&c ist zu voll - Platz für &e{free} XP&c."
+  offline-disabled: "&e{player}&c ist offline."
+
+auto:
+  enabled: "&7Auto-Einzahlung &aan&7: ab Level &a{level}&7 wandern deine XP automatisch in den Tresor."
+  disabled: "&7Auto-Einzahlung &caus&7."
+  min: "&cDas kleinste mögliche Level ist &e{min}&c."
+  deposited: "&bAuto-Einzahlung: &a{levels} Level &8({xp} XP) &7→ Tresor: &a{balance} Level"
+  full: "&eAuto-Einzahlung: Dein Tresor ist voll &8(Limit {limit} Level)&e."
+
+repair:
+  done: "&a{items} Item(s) &7repariert für &a{xp} XP&7 aus dem Tresor."
+  partial: "&eNicht genug XP im Tresor - teilweise repariert für &a{xp} XP&e."
+  nothing: "&cDa gibt es nichts zu reparieren."
+  no-mending: "&cNur Items mit &aReparatur (Mending)&c können repariert werden."
+  invalid: "&cNimm ein beschädigtes Item in die Hand."
+  armored-elytra: "&cGepanzerte Elytren gehen nur, wenn ArmoredElytra installiert ist - nimm einen Amboss."
+  empty: "&cDein Tresor ist leer."
+  disabled: "&cReparieren mit XP ist ausgeschaltet."
+
+bottle:
+  done: "&a{amount} Flasche(n) &7mit je &a{xp} XP &8(Level 0→{levels})&7 abgefüllt."
+  usage: "&7Benutzung: &e/{cmd} flasche <Level|XPp> [Anzahl]"
+  max: "&cMaximal &e{max}&c Flaschen auf einmal."
+  not-enough: "&cDafür brauchst du &e{needed} XP&c, im Tresor sind &e{xp} XP&c."
+  dropped: "&eInventar voll - ein paar Flaschen liegen vor deinen Füßen."
+  disabled: "&cXP-Flaschen sind ausgeschaltet."
+  name: "&bXP-Flasche &7({xp} XP)"
+  lore: "&7Enthält genau &a{xp} XP &7(Level 0→{levels}). Werfen zum Freisetzen."
+
+top:
+  header: "&8&m------&r &bXP-Tresor Rangliste &7({page}/{pages}) &8&m------"
+  line: "&7{rank}. &e{player} &8- &a{levels} Level &8({xp} XP)"
+  empty: "&7Noch hat niemand XP im Tresor."
+
+info:
+  header: "&8&m------&r &bXP-Tresor: &e{player} &8&m------"
+  balance: "&7Im Tresor: &a{levels} Level &8({xp} XP)"
+  limit: "&7Limit: &a{limit}"
+  auto: "&7Auto-Einzahlung: {state} &8(ab Level {level})"
+  keepxp: "&7Behält XP beim Tod: {state}"
+  imported: "&7Aus XP-Deposit übernommen: {state}"
+  uuid: "&8{uuid}"
+
+admin:
+  give: "&e{player}&7 hat &a+{xp} XP &8(Level 0→{levels})&7 bekommen. Jetzt: &a{balance} Level"
+  take: "&7Von &e{player}&7 &c{xp} XP&7 abgezogen. Jetzt: &a{balance} Level"
+  set: "&7Tresor von &e{player}&7 auf &a{xp} XP &8({levels} Level)&7 gesetzt."
+  reset: "&7Tresor von &e{player}&7 geleert."
+  not-enough: "&e{player}&c hat nur &e{xp} XP&c im Tresor."
+  notify-give: "&e{by}&7 hat dir &a{xp} XP&7 in den Tresor gelegt."
+  notify-take: "&e{by}&7 hat dir &c{xp} XP&7 aus dem Tresor genommen."
+  notify-set: "&e{by}&7 hat deinen Tresor auf &a{xp} XP&7 gesetzt."
+  notify-reset: "&e{by}&7 hat deinen Tresor geleert."
+
+import:
+  none: "&cKeine XP-Deposit-Konten gefunden &8({folder})&c."
+  preview: "&7Gefunden: &a{count} Konten &7mit zusammen &a{xp} XP &8({already} schon übernommen)&7. Zum Übernehmen: &e/{cmd} admin import confirm"
+  done: "&a{imported} Konten übernommen &8({xp} XP)&7, &e{skipped}&7 waren schon übernommen."
+
+reload: "&aKonfiguration und Texte neu geladen."
+
+help:
+  hint: "&8» &7Alle Befehle: &e/{cmd} hilfe"
+  header: "&8&m------&r &bXP-Tresor &8&m------"
+  deposit: "&e/{cmd} einzahlen <Menge> &8- &7XP in den Tresor"
+  withdraw: "&e/{cmd} abheben <Menge> &8- &7XP aus dem Tresor"
+  balance: "&e/{cmd} kontostand [Spieler] &8- &7Was ist im Tresor?"
+  top: "&e/{cmd} top [Seite] &8- &7Rangliste"
+  send: "&e/{cmd} senden <Spieler> <Menge> &8- &7XP an einen Tresor schicken"
+  auto: "&e/{cmd} auto [an|aus|<Level>] &8- &7ab einem Level automatisch einzahlen"
+  repair: "&e/{cmd} reparieren [alle] &8- &7Mending-Items mit Tresor-XP reparieren"
+  bottle: "&e/{cmd} flasche <Level> [Anzahl] &8- &7XP in Flaschen abfüllen"
+  amounts: "&8Menge: &710 &8= Level, &7500p &8= XP-Punkte, &7alles"
+  admin-header: "&8&m------&r &cAdmin &8&m------"
+  info: "&e/{cmd} info <Spieler> &8- &7Details zu einem Konto"
+  admin: "&e/{cmd} admin <give|take|set|reset> <Spieler> [Menge]"
+  import: "&e/{cmd} admin import &8- &7Konten aus XP-Deposit übernehmen"
+  reload: "&e/{cmd} reload &8- &7Config neu laden"

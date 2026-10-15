@@ -6,7 +6,7 @@ XpTresor is made for Paper servers and has no required dependencies.
 
 - **Author:** betamoon
 - **License:** MIT, see [LICENSE](LICENSE)
-- **Version:** 1.1.0
+- **Version:** 1.1.1
 
 ---
 
@@ -72,7 +72,7 @@ XpTresor is made for Paper servers and has no required dependencies.
 
 ## Installation
 
-1. Put `XpTresor-1.1.0.jar` into your `plugins` folder.
+1. Put `XpTresor-1.1.1.jar` into your `plugins` folder.
 2. Restart the server. `/reload` is not supported.
 3. Edit `plugins/XpTresor/config.yml` to your liking. In particular, set `language`, `limit` and `keep-xp-on-death`.
 4. Run `/xpt reload` to apply the changes.

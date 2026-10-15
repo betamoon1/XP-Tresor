@@ -1,0 +1,133 @@
+# XpTresor - Türkçe mesajlar. Renkler: &a &l ... ve &#rrggbb. Boş metin = mesaj gönderilmez.
+prefix: "&8[&bXP Kasası&8] &r"
+
+players-only: "&cBunu sadece oyuncular yapabilir."
+no-permission: "&cBunu yapmak için yetkin yok."
+unknown-command: "&cBilinmeyen komut. &7/{cmd} help"
+number-invalid: "&cLütfen geçerli bir sayı gir."
+player-unknown: "&e{player}&c adlı oyuncunun hesabı yok."
+
+usage:
+  deposit: "&7Kullanım: &e/{cmd} deposit <seviye|XPp|all>"
+  withdraw: "&7Kullanım: &e/{cmd} withdraw <seviye|XPp|all>"
+  send: "&7Kullanım: &e/{cmd} send <oyuncu> <seviye|XPp|all>"
+  auto: "&7Kullanım: &e/{cmd} auto [on|off|<seviye>]"
+  repair: "&7Kullanım: &e/{cmd} repair [all]"
+  info: "&7Kullanım: &e/{cmd} info <oyuncu>"
+  balance: "&7Kullanım: &e/{cmd} balance <oyuncu>"
+  admin: "&7Kullanım: &e/{cmd} admin <give|take|set> <oyuncu> <seviye|XPp>&7, &e/{cmd} admin reset <oyuncu>&7, &e/{cmd} admin import"
+
+words:
+  enabled: "&aaçık"
+  disabled: "&ckapalı"
+  positive: "&aevet"
+  negative: "&chayır"
+  unlimited: "sınırsız"
+  levels: "{levels} seviye"
+  offline-default: "&8(çevrimdışı: varsayılan limit)"
+
+balance:
+  self: "&7Kasanda: &a{levels} seviye &8({xp} XP)"
+  self-details: "&7Şu an çekilebilir: &a+{now} seviye &8| &7Limit: &a{limit}"
+  other: "&e{player}&7 adlı oyuncunun kasasında &a{levels} seviye &8({xp} XP)&7 var."
+
+deposit:
+  done: "&a{levels} seviye &7yatırıldı &8({xp} XP)&7. Kasa: &a{balance} seviye"
+  partial: "&eKasa doldu: &a{levels} seviye &7yatırıldı &8({xp} XP)&7. Kasa: &a{balance} seviye"
+  not-enough-levels: "&cSadece &e{levels} seviyen&c var."
+  not-enough-points: "&cSadece &e{xp} XP&c'n var."
+  nothing: "&cYatıracak XP'n yok."
+  minimum: "&cEn az &e{levels} seviye &8({xp} XP)&c yatırmalısın."
+  full: "&cKasan dolu &8(limit {limit} seviye)&c."
+  too-much: "&cBu kadarı sığmaz - &e{xp} XP&c'lik yer kaldı. İpucu: &e/xpt deposit all"
+
+withdraw:
+  done: "&a+{levels} seviye &7çekildi &8({xp} XP)&7. Kasa: &a{balance} seviye"
+  empty: "&cKasan boş."
+  not-enough-levels: "&cKasada yeterince yok - şu an &e{max} seviye&c çekebilirsin."
+  not-enough-points: "&cKasada sadece &e{xp} XP&c var."
+
+send:
+  done: "&e{player}&7 adlı oyuncuya &a{xp} XP &8(≈{levels} seviye)&7 gönderdin."
+  received: "&e{player} &7kasana &a{xp} XP &8(≈{levels} seviye)&7 gönderdi."
+  self: "&cKendine XP gönderemezsin."
+  not-enough: "&cKasanda sadece &e{levels} seviye &8({xp} XP)&c var."
+  receiver-full: "&e{player}&c adlı oyuncunun kasası çok dolu - &e{free} XP&c'lik yer var."
+  offline-disabled: "&e{player}&c çevrimdışı."
+
+auto:
+  enabled: "&7Otomatik yatırma &aaçık&7: &a{level}&7. seviyeden itibaren XP'n otomatik olarak kasaya gider."
+  disabled: "&7Otomatik yatırma &ckapalı&7."
+  min: "&cMümkün olan en düşük seviye &e{min}&c."
+  deposited: "&bOtomatik yatırma: &a{levels} seviye &8({xp} XP) &7→ kasa: &a{balance} seviye"
+  full: "&eOtomatik yatırma: kasan dolu &8(limit {limit} seviye)&e."
+
+repair:
+  done: "&a{items} eşya &7kasadaki &a{xp} XP&7 ile tamir edildi."
+  partial: "&eKasada yeterli XP yok - &a{xp} XP&e ile kısmen tamir edildi."
+  nothing: "&cTamir edilecek bir şey yok."
+  no-mending: "&cSadece &aOnarım (Mending)&c büyüsü olan eşyalar tamir edilebilir."
+  invalid: "&cElinde hasarlı bir eşya tut."
+  armored-elytra: "&cZırhlı elytralar sadece ArmoredElytra yüklüyken çalışır - örs kullan."
+  empty: "&cKasan boş."
+  disabled: "&cXP ile tamir kapalı."
+
+bottle:
+  done: "&a{amount} şişe &7her biri &a{xp} XP &8(seviye 0→{levels})&7 ile dolduruldu."
+  usage: "&7Kullanım: &e/{cmd} bottle <seviye|XPp> [adet]"
+  max: "&cBir seferde en fazla &e{max}&c şişe."
+  not-enough: "&e{needed} XP&c gerekiyor, kasanda &e{xp} XP&c var."
+  dropped: "&eEnvanter dolu - bazı şişeler ayaklarının dibine düştü."
+  disabled: "&cXP şişeleri kapalı."
+  name: "&bXP Şişesi &7({xp} XP)"
+  lore: "&7Tam olarak &a{xp} XP &7içerir (seviye 0→{levels}). XP'yi serbest bırakmak için fırlat."
+
+top:
+  header: "&8&m------&r &bXP Kasası Sıralaması &7({page}/{pages}) &8&m------"
+  line: "&7{rank}. &e{player} &8- &a{levels} seviye &8({xp} XP)"
+  empty: "&7Henüz kimsenin kasasında XP yok."
+
+info:
+  header: "&8&m------&r &bXP Kasası: &e{player} &8&m------"
+  balance: "&7Kasa: &a{levels} seviye &8({xp} XP)"
+  limit: "&7Limit: &a{limit}"
+  auto: "&7Otomatik yatırma: {state} &8({level}. seviyeden itibaren)"
+  keepxp: "&7Ölünce XP'yi korur: {state}"
+  imported: "&7XP-Deposit'ten aktarıldı: {state}"
+  uuid: "&8{uuid}"
+
+admin:
+  give: "&e{player}&7 &a+{xp} XP &8(seviye 0→{levels})&7 aldı. Şimdi: &a{balance} seviye"
+  take: "&e{player}&7 adlı oyuncudan &c{xp} XP&7 alındı. Şimdi: &a{balance} seviye"
+  set: "&e{player}&7 adlı oyuncunun kasası &a{xp} XP &8({levels} seviye)&7 olarak ayarlandı."
+  reset: "&e{player}&7 adlı oyuncunun kasası boşaltıldı."
+  not-enough: "&e{player}&c adlı oyuncunun kasasında sadece &e{xp} XP&c var."
+  notify-give: "&e{by}&7 kasana &a{xp} XP&7 koydu."
+  notify-take: "&e{by}&7 kasandan &c{xp} XP&7 aldı."
+  notify-set: "&e{by}&7 kasanı &a{xp} XP&7 olarak ayarladı."
+  notify-reset: "&e{by}&7 kasanı boşalttı."
+
+import:
+  none: "&cXP-Deposit hesabı bulunamadı &8({folder})&c."
+  preview: "&7Toplam &a{xp} XP &7içeren &a{count} hesap &7bulundu &8({already} zaten aktarılmış)&7. Aktarmak için: &e/{cmd} admin import confirm"
+  done: "&a{imported} hesap aktarıldı &8({xp} XP)&7, &e{skipped}&7 zaten aktarılmıştı."
+
+reload: "&aAyarlar ve mesajlar yeniden yüklendi."
+
+help:
+  hint: "&8» &7Tüm komutlar: &e/{cmd} help"
+  header: "&8&m------&r &bXP Kasası &8&m------"
+  deposit: "&e/{cmd} deposit <miktar> &8- &7kasaya XP yatır"
+  withdraw: "&e/{cmd} withdraw <miktar> &8- &7kasadan XP çek"
+  balance: "&e/{cmd} balance [oyuncu] &8- &7kasada ne var?"
+  top: "&e/{cmd} top [sayfa] &8- &7sıralama"
+  send: "&e/{cmd} send <oyuncu> <miktar> &8- &7birinin kasasına XP gönder"
+  auto: "&e/{cmd} auto [on|off|<seviye>] &8- &7bir seviyeden itibaren otomatik yatır"
+  repair: "&e/{cmd} repair [all] &8- &7Onarım büyülü eşyaları kasa XP'si ile tamir et"
+  bottle: "&e/{cmd} bottle <seviye> [adet] &8- &7XP'yi şişelere doldur"
+  amounts: "&8Miktar: &710 &8= seviye, &7500p &8= XP puanı, &7all &8= hepsi"
+  admin-header: "&8&m------&r &cYönetici &8&m------"
+  info: "&e/{cmd} info <oyuncu> &8- &7hesap ayrıntıları"
+  admin: "&e/{cmd} admin <give|take|set|reset> <oyuncu> [miktar]"
+  import: "&e/{cmd} admin import &8- &7XP-Deposit hesaplarını aktar"
+  reload: "&e/{cmd} reload &8- &7ayarları yeniden yükle"

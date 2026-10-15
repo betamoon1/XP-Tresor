@@ -1,0 +1,133 @@
+# XpTresor - messages en français. Couleurs : &a &l ... et &#rrggbb. Texte vide = le message n'est pas envoyé.
+prefix: "&8[&bCoffre XP&8] &r"
+
+players-only: "&cSeuls les joueurs peuvent faire ça."
+no-permission: "&cTu n'as pas la permission de faire ça."
+unknown-command: "&cCommande inconnue. &7/{cmd} help"
+number-invalid: "&cEntre un nombre valide."
+player-unknown: "&cLe joueur &e{player}&c n'a pas de compte."
+
+usage:
+  deposit: "&7Utilisation : &e/{cmd} deposit <niveaux|XPp|all>"
+  withdraw: "&7Utilisation : &e/{cmd} withdraw <niveaux|XPp|all>"
+  send: "&7Utilisation : &e/{cmd} send <joueur> <niveaux|XPp|all>"
+  auto: "&7Utilisation : &e/{cmd} auto [on|off|<niveau>]"
+  repair: "&7Utilisation : &e/{cmd} repair [all]"
+  info: "&7Utilisation : &e/{cmd} info <joueur>"
+  balance: "&7Utilisation : &e/{cmd} balance <joueur>"
+  admin: "&7Utilisation : &e/{cmd} admin <give|take|set> <joueur> <niveaux|XPp>&7, &e/{cmd} admin reset <joueur>&7, &e/{cmd} admin import"
+
+words:
+  enabled: "&aactivé"
+  disabled: "&cdésactivé"
+  positive: "&aoui"
+  negative: "&cnon"
+  unlimited: "illimité"
+  levels: "{levels} niveaux"
+  offline-default: "&8(hors ligne : limite par défaut)"
+
+balance:
+  self: "&7Dans ton coffre : &a{levels} niveaux &8({xp} XP)"
+  self-details: "&7Retirable maintenant : &a+{now} niveaux &8| &7Limite : &a{limit}"
+  other: "&e{player}&7 a &a{levels} niveaux &8({xp} XP)&7 dans son coffre."
+
+deposit:
+  done: "&a{levels} niveaux &7déposés &8({xp} XP)&7. Coffre : &a{balance} niveaux"
+  partial: "&eLe coffre est plein : &a{levels} niveaux &7déposés &8({xp} XP)&7. Coffre : &a{balance} niveaux"
+  not-enough-levels: "&cTu n'as que &e{levels} niveaux&c."
+  not-enough-points: "&cTu n'as que &e{xp} XP&c."
+  nothing: "&cTu n'as pas d'XP à déposer."
+  minimum: "&cDépose au moins &e{levels} niveaux &8({xp} XP)&c."
+  full: "&cTon coffre est plein &8(limite {limit} niveaux)&c."
+  too-much: "&cÇa ne rentre plus - il reste de la place pour &e{xp} XP&c. Astuce : &e/xpt deposit all"
+
+withdraw:
+  done: "&a+{levels} niveaux &7retirés &8({xp} XP)&7. Coffre : &a{balance} niveaux"
+  empty: "&cTon coffre est vide."
+  not-enough-levels: "&cPas assez dans le coffre - tu peux retirer &e{max} niveaux&c maintenant."
+  not-enough-points: "&cLe coffre ne contient que &e{xp} XP&c."
+
+send:
+  done: "&7Tu as envoyé &a{xp} XP &8(≈{levels} niveaux)&7 à &e{player}&7."
+  received: "&e{player} &7a envoyé &a{xp} XP &8(≈{levels} niveaux)&7 dans ton coffre."
+  self: "&cTu ne peux pas t'envoyer d'XP à toi-même."
+  not-enough: "&cTon coffre ne contient que &e{levels} niveaux &8({xp} XP)&c."
+  receiver-full: "&cLe coffre de &e{player}&c est trop plein - place pour &e{free} XP&c."
+  offline-disabled: "&e{player}&c est hors ligne."
+
+auto:
+  enabled: "&7Dépôt automatique &aactivé&7 : dès le niveau &a{level}&7, ton XP va automatiquement dans le coffre."
+  disabled: "&7Dépôt automatique &cdésactivé&7."
+  min: "&cLe niveau le plus bas possible est &e{min}&c."
+  deposited: "&bDépôt automatique : &a{levels} niveaux &8({xp} XP) &7→ coffre : &a{balance} niveaux"
+  full: "&eDépôt automatique : ton coffre est plein &8(limite {limit} niveaux)&e."
+
+repair:
+  done: "&a{items} objet(s) &7réparé(s) pour &a{xp} XP&7 de ton coffre."
+  partial: "&ePas assez d'XP dans le coffre - réparation partielle pour &a{xp} XP&e."
+  nothing: "&cIl n'y a rien à réparer."
+  no-mending: "&cSeuls les objets avec &aRaccommodage (Mending)&c peuvent être réparés."
+  invalid: "&cTiens un objet endommagé en main."
+  armored-elytra: "&cLes élytres blindées ne marchent qu'avec ArmoredElytra installé - utilise une enclume."
+  empty: "&cTon coffre est vide."
+  disabled: "&cLa réparation avec l'XP est désactivée."
+
+bottle:
+  done: "&a{amount} fiole(s) &7remplie(s) avec &a{xp} XP &8(niveau 0→{levels})&7 chacune."
+  usage: "&7Utilisation : &e/{cmd} bottle <niveaux|XPp> [nombre]"
+  max: "&cAu maximum &e{max}&c fioles à la fois."
+  not-enough: "&cIl te faut &e{needed} XP&c, ton coffre contient &e{xp} XP&c."
+  dropped: "&eInventaire plein - quelques fioles sont tombées à tes pieds."
+  disabled: "&cLes fioles d'XP sont désactivées."
+  name: "&bFiole d'XP &7({xp} XP)"
+  lore: "&7Contient exactement &a{xp} XP &7(niveau 0→{levels}). Lance-la pour libérer l'XP."
+
+top:
+  header: "&8&m------&r &bClassement des coffres XP &7({page}/{pages}) &8&m------"
+  line: "&7{rank}. &e{player} &8- &a{levels} niveaux &8({xp} XP)"
+  empty: "&7Personne n'a encore d'XP dans son coffre."
+
+info:
+  header: "&8&m------&r &bCoffre XP : &e{player} &8&m------"
+  balance: "&7Coffre : &a{levels} niveaux &8({xp} XP)"
+  limit: "&7Limite : &a{limit}"
+  auto: "&7Dépôt automatique : {state} &8(dès le niveau {level})"
+  keepxp: "&7Garde l'XP à la mort : {state}"
+  imported: "&7Importé de XP-Deposit : {state}"
+  uuid: "&8{uuid}"
+
+admin:
+  give: "&e{player}&7 a reçu &a+{xp} XP &8(niveau 0→{levels})&7. Maintenant : &a{balance} niveaux"
+  take: "&c{xp} XP&7 retirés à &e{player}&7. Maintenant : &a{balance} niveaux"
+  set: "&7Coffre de &e{player}&7 réglé sur &a{xp} XP &8({levels} niveaux)&7."
+  reset: "&7Coffre de &e{player}&7 vidé."
+  not-enough: "&e{player}&c n'a que &e{xp} XP&c dans son coffre."
+  notify-give: "&e{by}&7 a mis &a{xp} XP&7 dans ton coffre."
+  notify-take: "&e{by}&7 a retiré &c{xp} XP&7 de ton coffre."
+  notify-set: "&e{by}&7 a réglé ton coffre sur &a{xp} XP&7."
+  notify-reset: "&e{by}&7 a vidé ton coffre."
+
+import:
+  none: "&cAucun compte XP-Deposit trouvé &8({folder})&c."
+  preview: "&a{count} comptes &7trouvés avec &a{xp} XP &7au total &8({already} déjà importés)&7. Pour importer : &e/{cmd} admin import confirm"
+  done: "&a{imported} comptes importés &8({xp} XP)&7, &e{skipped}&7 étaient déjà importés."
+
+reload: "&aConfiguration et messages rechargés."
+
+help:
+  hint: "&8» &7Toutes les commandes : &e/{cmd} help"
+  header: "&8&m------&r &bCoffre XP &8&m------"
+  deposit: "&e/{cmd} deposit <quantité> &8- &7mettre de l'XP dans le coffre"
+  withdraw: "&e/{cmd} withdraw <quantité> &8- &7retirer de l'XP du coffre"
+  balance: "&e/{cmd} balance [joueur] &8- &7qu'y a-t-il dans le coffre ?"
+  top: "&e/{cmd} top [page] &8- &7classement"
+  send: "&e/{cmd} send <joueur> <quantité> &8- &7envoyer de l'XP dans le coffre de quelqu'un"
+  auto: "&e/{cmd} auto [on|off|<niveau>] &8- &7déposer automatiquement à partir d'un niveau"
+  repair: "&e/{cmd} repair [all] &8- &7réparer les objets avec Raccommodage grâce à l'XP du coffre"
+  bottle: "&e/{cmd} bottle <niveaux> [nombre] &8- &7remplir des fioles d'XP"
+  amounts: "&8Quantité : &710 &8= niveaux, &7500p &8= points d'XP, &7all &8= tout"
+  admin-header: "&8&m------&r &cAdmin &8&m------"
+  info: "&e/{cmd} info <joueur> &8- &7détails d'un compte"
+  admin: "&e/{cmd} admin <give|take|set|reset> <joueur> [quantité]"
+  import: "&e/{cmd} admin import &8- &7reprendre les comptes de XP-Deposit"
+  reload: "&e/{cmd} reload &8- &7recharger la configuration"

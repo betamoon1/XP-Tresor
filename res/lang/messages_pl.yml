@@ -1,0 +1,133 @@
+# XpTresor - wiadomości po polsku. Kolory: &a &l ... oraz &#rrggbb. Pusty tekst = wiadomość nie jest wysyłana.
+prefix: "&8[&bSejf XP&8] &r"
+
+players-only: "&cTylko gracze mogą to zrobić."
+no-permission: "&cNie masz uprawnień, aby to zrobić."
+unknown-command: "&cNieznana komenda. &7/{cmd} help"
+number-invalid: "&cPodaj prawidłową liczbę."
+player-unknown: "&cGracz &e{player}&c nie ma konta."
+
+usage:
+  deposit: "&7Użycie: &e/{cmd} deposit <poziomy|XPp|all>"
+  withdraw: "&7Użycie: &e/{cmd} withdraw <poziomy|XPp|all>"
+  send: "&7Użycie: &e/{cmd} send <gracz> <poziomy|XPp|all>"
+  auto: "&7Użycie: &e/{cmd} auto [on|off|<poziom>]"
+  repair: "&7Użycie: &e/{cmd} repair [all]"
+  info: "&7Użycie: &e/{cmd} info <gracz>"
+  balance: "&7Użycie: &e/{cmd} balance <gracz>"
+  admin: "&7Użycie: &e/{cmd} admin <give|take|set> <gracz> <poziomy|XPp>&7, &e/{cmd} admin reset <gracz>&7, &e/{cmd} admin import"
+
+words:
+  enabled: "&awłączony"
+  disabled: "&cwyłączony"
+  positive: "&atak"
+  negative: "&cnie"
+  unlimited: "bez limitu"
+  levels: "{levels} poz."
+  offline-default: "&8(offline: domyślny limit)"
+
+balance:
+  self: "&7W twoim sejfie: &a{levels} poz. &8({xp} XP)"
+  self-details: "&7Możesz teraz wypłacić: &a+{now} poz. &8| &7Limit: &a{limit}"
+  other: "&e{player}&7 ma &a{levels} poz. &8({xp} XP)&7 w sejfie."
+
+deposit:
+  done: "&7Wpłacono &a{levels} poz. &8({xp} XP)&7. Sejf: &a{balance} poz."
+  partial: "&eSejf jest pełny: wpłacono &a{levels} poz. &8({xp} XP)&7. Sejf: &a{balance} poz."
+  not-enough-levels: "&cMasz tylko &e{levels} poz.&c"
+  not-enough-points: "&cMasz tylko &e{xp} XP&c."
+  nothing: "&cNie masz XP do wpłacenia."
+  minimum: "&cWpłać co najmniej &e{levels} poz. &8({xp} XP)&c."
+  full: "&cTwój sejf jest pełny &8(limit {limit} poz.)&c."
+  too-much: "&cTo się już nie zmieści - miejsce na &e{xp} XP&c. Wskazówka: &e/xpt deposit all"
+
+withdraw:
+  done: "&7Wypłacono &a+{levels} poz. &8({xp} XP)&7. Sejf: &a{balance} poz."
+  empty: "&cTwój sejf jest pusty."
+  not-enough-levels: "&cZa mało w sejfie - możesz teraz wypłacić &e{max} poz.&c"
+  not-enough-points: "&cW sejfie jest tylko &e{xp} XP&c."
+
+send:
+  done: "&7Wysłano &a{xp} XP &8(≈{levels} poz.)&7 do &e{player}&7."
+  received: "&e{player} &7wysłał &a{xp} XP &8(≈{levels} poz.)&7 do twojego sejfu."
+  self: "&cNie możesz wysłać XP samemu sobie."
+  not-enough: "&cW twoim sejfie jest tylko &e{levels} poz. &8({xp} XP)&c."
+  receiver-full: "&cSejf gracza &e{player}&c jest zbyt pełny - miejsce na &e{free} XP&c."
+  offline-disabled: "&e{player}&c jest offline."
+
+auto:
+  enabled: "&7Automatyczna wpłata &awłączona&7: od poziomu &a{level}&7 twoje XP trafia automatycznie do sejfu."
+  disabled: "&7Automatyczna wpłata &cwyłączona&7."
+  min: "&cNajniższy możliwy poziom to &e{min}&c."
+  deposited: "&bAutomatyczna wpłata: &a{levels} poz. &8({xp} XP) &7→ sejf: &a{balance} poz."
+  full: "&eAutomatyczna wpłata: twój sejf jest pełny &8(limit {limit} poz.)&e."
+
+repair:
+  done: "&7Naprawiono &a{items} przedmiot(ów)&7 za &a{xp} XP&7 z sejfu."
+  partial: "&eZa mało XP w sejfie - częściowo naprawiono za &a{xp} XP&e."
+  nothing: "&cNie ma czego naprawiać."
+  no-mending: "&cNaprawić można tylko przedmioty z &aNaprawą (Mending)&c."
+  invalid: "&cTrzymaj w ręce uszkodzony przedmiot."
+  armored-elytra: "&cOpancerzone elytry działają tylko z zainstalowanym ArmoredElytra - użyj kowadła."
+  empty: "&cTwój sejf jest pusty."
+  disabled: "&cNaprawa za pomocą XP jest wyłączona."
+
+bottle:
+  done: "&7Napełniono &a{amount} butelk(i)&7 po &a{xp} XP &8(poziom 0→{levels})&7 każda."
+  usage: "&7Użycie: &e/{cmd} bottle <poziomy|XPp> [ilość]"
+  max: "&cMaksymalnie &e{max}&c butelek naraz."
+  not-enough: "&cPotrzebujesz &e{needed} XP&c, w sejfie jest &e{xp} XP&c."
+  dropped: "&ePełny ekwipunek - kilka butelek wypadło pod twoje nogi."
+  disabled: "&cButelki XP są wyłączone."
+  name: "&bButelka XP &7({xp} XP)"
+  lore: "&7Zawiera dokładnie &a{xp} XP &7(poziom 0→{levels}). Rzuć, aby uwolnić XP."
+
+top:
+  header: "&8&m------&r &bRanking sejfów XP &7({page}/{pages}) &8&m------"
+  line: "&7{rank}. &e{player} &8- &a{levels} poz. &8({xp} XP)"
+  empty: "&7Nikt jeszcze nie ma XP w sejfie."
+
+info:
+  header: "&8&m------&r &bSejf XP: &e{player} &8&m------"
+  balance: "&7Sejf: &a{levels} poz. &8({xp} XP)"
+  limit: "&7Limit: &a{limit}"
+  auto: "&7Automatyczna wpłata: {state} &8(od poziomu {level})"
+  keepxp: "&7Zachowuje XP po śmierci: {state}"
+  imported: "&7Zaimportowano z XP-Deposit: {state}"
+  uuid: "&8{uuid}"
+
+admin:
+  give: "&e{player}&7 otrzymał &a+{xp} XP &8(poziom 0→{levels})&7. Teraz: &a{balance} poz."
+  take: "&7Zabrano &c{xp} XP&7 graczowi &e{player}&7. Teraz: &a{balance} poz."
+  set: "&7Ustawiono sejf gracza &e{player}&7 na &a{xp} XP &8({levels} poz.)&7."
+  reset: "&7Opróżniono sejf gracza &e{player}&7."
+  not-enough: "&e{player}&c ma tylko &e{xp} XP&c w sejfie."
+  notify-give: "&e{by}&7 dodał &a{xp} XP&7 do twojego sejfu."
+  notify-take: "&e{by}&7 zabrał &c{xp} XP&7 z twojego sejfu."
+  notify-set: "&e{by}&7 ustawił twój sejf na &a{xp} XP&7."
+  notify-reset: "&e{by}&7 opróżnił twój sejf."
+
+import:
+  none: "&cNie znaleziono kont XP-Deposit &8({folder})&c."
+  preview: "&7Znaleziono &a{count} kont &7z łącznie &a{xp} XP &8({already} już zaimportowanych)&7. Aby zaimportować: &e/{cmd} admin import confirm"
+  done: "&aZaimportowano {imported} kont &8({xp} XP)&7, &e{skipped}&7 było już zaimportowanych."
+
+reload: "&aKonfiguracja i wiadomości przeładowane."
+
+help:
+  hint: "&8» &7Wszystkie komendy: &e/{cmd} help"
+  header: "&8&m------&r &bSejf XP &8&m------"
+  deposit: "&e/{cmd} deposit <ilość> &8- &7wpłać XP do sejfu"
+  withdraw: "&e/{cmd} withdraw <ilość> &8- &7wypłać XP z sejfu"
+  balance: "&e/{cmd} balance [gracz] &8- &7co jest w sejfie?"
+  top: "&e/{cmd} top [strona] &8- &7ranking"
+  send: "&e/{cmd} send <gracz> <ilość> &8- &7wyślij XP do czyjegoś sejfu"
+  auto: "&e/{cmd} auto [on|off|<poziom>] &8- &7automatyczna wpłata od danego poziomu"
+  repair: "&e/{cmd} repair [all] &8- &7napraw przedmioty z Naprawą za XP z sejfu"
+  bottle: "&e/{cmd} bottle <poziomy> [ilość] &8- &7napełnij butelki XP"
+  amounts: "&8Ilość: &710 &8= poziomy, &7500p &8= punkty XP, &7all &8= wszystko"
+  admin-header: "&8&m------&r &cAdmin &8&m------"
+  info: "&e/{cmd} info <gracz> &8- &7szczegóły konta"
+  admin: "&e/{cmd} admin <give|take|set|reset> <gracz> [ilość]"
+  import: "&e/{cmd} admin import &8- &7przejmij konta z XP-Deposit"
+  reload: "&e/{cmd} reload &8- &7przeładuj konfigurację"
