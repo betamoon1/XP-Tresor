@@ -1,0 +1,111 @@
+name: XpTresor
+version: 1.2.0
+main: io.github.betamoon1.xptresor.XpTresor
+api-version: '1.21'
+author: betamoon
+website: https://github.com/betamoon1/XpTresor
+description: A personal XP vault for every player - menu, vault block, pay enchanting and anvils from the vault, history, auto-deposit, repair with XP and exact XP bottles.
+softdepend: [Vault, PlaceholderAPI, ArmoredElytra]
+
+commands:
+  xptresor:
+    description: XP vault. /xpt help
+    usage: /<command> help
+    aliases: [xpt, tresor]
+
+permissions:
+  xptresor.player:
+    description: All features for normal players.
+    default: true
+    children:
+      xptresor.deposit: true
+      xptresor.withdraw: true
+      xptresor.balance: true
+      xptresor.top: true
+      xptresor.send: true
+      xptresor.auto: true
+      xptresor.repair: true
+      xptresor.bottle: true
+      xptresor.menu: true
+      xptresor.history: true
+      xptresor.autopay: true
+      xptresor.block: true
+  xptresor.admin:
+    description: All admin commands.
+    default: op
+    children:
+      xptresor.player: true
+      xptresor.balance.others: true
+      xptresor.history.others: true
+      xptresor.admin.info: true
+      xptresor.admin.modify: true
+      xptresor.admin.import: true
+      xptresor.reload: true
+  xptresor.*:
+    description: Everything, including unlimited storage and keeping XP on death.
+    default: false
+    children:
+      xptresor.admin: true
+      xptresor.limit.unlimited: true
+      xptresor.keepxp: true
+
+  xptresor.deposit:
+    description: /xpt deposit
+    default: true
+  xptresor.withdraw:
+    description: /xpt withdraw
+    default: true
+  xptresor.balance:
+    description: /xpt balance (own balance)
+    default: true
+  xptresor.balance.others:
+    description: /xpt balance <player>
+    default: true
+  xptresor.top:
+    description: /xpt top
+    default: true
+  xptresor.send:
+    description: /xpt send <player> <amount>
+    default: true
+  xptresor.auto:
+    description: /xpt auto - automatic deposit
+    default: true
+  xptresor.repair:
+    description: /xpt repair - repair items with stored XP
+    default: true
+  xptresor.bottle:
+    description: /xpt bottle - fill stored XP into bottles
+    default: true
+  xptresor.menu:
+    description: /xpt menu - the vault menu
+    default: true
+  xptresor.history:
+    description: /xpt history - own history
+    default: true
+  xptresor.history.others:
+    description: /xpt history <player>
+    default: op
+  xptresor.autopay:
+    description: Pay enchanting and anvils from the vault (/xpt autopay)
+    default: true
+  xptresor.block:
+    description: Use the XP vault block
+    default: true
+  xptresor.keepxp:
+    description: Keep XP on death (only if keep-xp-on-death is enabled in the config)
+    default: false
+  xptresor.limit.unlimited:
+    description: No storage limit
+    default: op
+  xptresor.admin.info:
+    description: /xpt info <player>
+    default: op
+  xptresor.admin.modify:
+    description: /xpt admin give|take|set|reset
+    default: op
+  xptresor.admin.import:
+    description: /xpt admin import - take over the accounts of XP-Deposit
+    default: op
+  xptresor.reload:
+    description: /xpt reload
+    default: op

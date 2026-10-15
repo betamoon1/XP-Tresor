@@ -1,0 +1,220 @@
+# XpTresor - English messages. Colors: &a &l ... and &#rrggbb. Empty text = message is not sent.
+prefix: "&8[&bXP Vault&8] &r"
+
+players-only: "&cOnly players can do that."
+no-permission: "&cYou don't have permission to do that."
+unknown-command: "&cUnknown command. &7/{cmd} help"
+number-invalid: "&cPlease enter a valid number."
+player-unknown: "&cPlayer &e{player}&c has no account."
+
+usage:
+  deposit: "&7Usage: &e/{cmd} deposit <levels|XPp|all>"
+  withdraw: "&7Usage: &e/{cmd} withdraw <levels|XPp|all>"
+  send: "&7Usage: &e/{cmd} send <player> <levels|XPp|all>"
+  auto: "&7Usage: &e/{cmd} auto [on|off|<level>]"
+  repair: "&7Usage: &e/{cmd} repair [all]"
+  info: "&7Usage: &e/{cmd} info <player>"
+  balance: "&7Usage: &e/{cmd} balance <player>"
+  admin: "&7Usage: &e/{cmd} admin <give|take|set> <player> <levels|XPp>&7, &e/{cmd} admin reset <player>&7, &e/{cmd} admin import"
+
+words:
+  enabled: "&aon"
+  disabled: "&coff"
+  positive: "&ayes"
+  negative: "&cno"
+  unlimited: "unlimited"
+  levels: "{levels} levels"
+  offline-default: "&8(offline: default limit)"
+
+balance:
+  self: "&7In your vault: &a{levels} levels &8({xp} XP)"
+  self-details: "&7Withdrawable now: &a+{now} levels &8| &7Limit: &a{limit}"
+  other: "&e{player}&7 has &a{levels} levels &8({xp} XP)&7 in their vault."
+
+deposit:
+  done: "&7Deposited &a{levels} levels &8({xp} XP)&7. Vault: &a{balance} levels"
+  partial: "&eVault is full now: deposited &a{levels} levels &8({xp} XP)&7. Vault: &a{balance} levels"
+  not-enough-levels: "&cYou only have &e{levels} levels&c."
+  not-enough-points: "&cYou only have &e{xp} XP&c."
+  nothing: "&cYou have no XP to deposit."
+  minimum: "&cDeposit at least &e{levels} levels &8({xp} XP)&c."
+  full: "&cYour vault is full &8(limit {limit} levels)&c."
+  too-much: "&cThat doesn't fit anymore - room for &e{xp} XP&c. Tip: &e/xpt deposit all"
+
+withdraw:
+  done: "&7Withdrew &a+{levels} levels &8({xp} XP)&7. Vault: &a{balance} levels"
+  empty: "&cYour vault is empty."
+  not-enough-levels: "&cNot enough in the vault - you can withdraw &e{max} levels&c right now."
+  not-enough-points: "&cThe vault only holds &e{xp} XP&c."
+
+send:
+  done: "&7You sent &e{player} &a{xp} XP &8(≈{levels} levels)&7."
+  received: "&e{player} &7sent &a{xp} XP &8(≈{levels} levels)&7 to your vault."
+  self: "&cYou can't send XP to yourself."
+  not-enough: "&cYour vault only holds &e{levels} levels &8({xp} XP)&c."
+  receiver-full: "&cThe vault of &e{player}&c is too full - room for &e{free} XP&c."
+  offline-disabled: "&e{player}&c is offline."
+
+auto:
+  enabled: "&7Auto-deposit &aon&7: from level &a{level}&7 on, your XP goes into the vault automatically."
+  disabled: "&7Auto-deposit &coff&7."
+  min: "&cThe lowest possible level is &e{min}&c."
+  deposited: "&bAuto-deposit: &a{levels} levels &8({xp} XP) &7→ vault: &a{balance} levels"
+  full: "&eAuto-deposit: your vault is full &8(limit {limit} levels)&e."
+
+repair:
+  done: "&7Repaired &a{items} item(s)&7 for &a{xp} XP&7 from your vault."
+  partial: "&eNot enough XP in the vault - partially repaired for &a{xp} XP&e."
+  nothing: "&cThere is nothing to repair."
+  no-mending: "&cOnly items with &aMending&c can be repaired."
+  invalid: "&cHold a damaged item."
+  armored-elytra: "&cArmored elytras only work while ArmoredElytra is installed - use an anvil."
+  empty: "&cYour vault is empty."
+  disabled: "&cRepairing with XP is disabled."
+
+bottle:
+  done: "&7Filled &a{amount} bottle(s)&7 with &a{xp} XP &8(level 0→{levels})&7 each."
+  usage: "&7Usage: &e/{cmd} bottle <levels|XPp> [amount]"
+  max: "&cAt most &e{max}&c bottles at once."
+  not-enough: "&cYou need &e{needed} XP&c, your vault holds &e{xp} XP&c."
+  dropped: "&eInventory full - some bottles were dropped at your feet."
+  disabled: "&cXP bottles are disabled."
+  name: "&bXP Bottle &7({xp} XP)"
+  lore: "&7Contains exactly &a{xp} XP &7(level 0→{levels}). Throw it to release the XP."
+
+top:
+  header: "&8&m------&r &bXP Vault Top &7({page}/{pages}) &8&m------"
+  line: "&7{rank}. &e{player} &8- &a{levels} levels &8({xp} XP)"
+  empty: "&7Nobody has XP in their vault yet."
+
+info:
+  header: "&8&m------&r &bXP Vault: &e{player} &8&m------"
+  balance: "&7Vault: &a{levels} levels &8({xp} XP)"
+  limit: "&7Limit: &a{limit}"
+  auto: "&7Auto-deposit: {state} &8(from level {level})"
+  keepxp: "&7Keeps XP on death: {state}"
+  imported: "&7Imported from XP-Deposit: {state}"
+  uuid: "&8{uuid}"
+
+admin:
+  give: "&e{player}&7 got &a+{xp} XP &8(level 0→{levels})&7. Now: &a{balance} levels"
+  take: "&7Took &c{xp} XP&7 from &e{player}&7. Now: &a{balance} levels"
+  set: "&7Set the vault of &e{player}&7 to &a{xp} XP &8({levels} levels)&7."
+  reset: "&7Emptied the vault of &e{player}&7."
+  not-enough: "&e{player}&c only has &e{xp} XP&c in their vault."
+  notify-give: "&e{by}&7 put &a{xp} XP&7 into your vault."
+  notify-take: "&e{by}&7 took &c{xp} XP&7 from your vault."
+  notify-set: "&e{by}&7 set your vault to &a{xp} XP&7."
+  notify-reset: "&e{by}&7 emptied your vault."
+
+import:
+  none: "&cNo XP-Deposit accounts found &8({folder})&c."
+  preview: "&7Found &a{count} accounts &7with &a{xp} XP &7in total &8({already} already imported)&7. To import: &e/{cmd} admin import confirm"
+  done: "&aImported {imported} accounts &8({xp} XP)&7, &e{skipped}&7 were already imported."
+
+reload: "&aConfig and messages reloaded."
+
+help:
+  hint: "&8» &7All commands: &e/{cmd} help"
+  header: "&8&m------&r &bXP Vault &8&m------"
+  deposit: "&e/{cmd} deposit <amount> &8- &7put XP into the vault"
+  withdraw: "&e/{cmd} withdraw <amount> &8- &7take XP out of the vault"
+  balance: "&e/{cmd} balance [player] &8- &7what's in the vault?"
+  top: "&e/{cmd} top [page] &8- &7leaderboard"
+  send: "&e/{cmd} send <player> <amount> &8- &7send XP to someone's vault"
+  auto: "&e/{cmd} auto [on|off|<level>] &8- &7deposit automatically from a level on"
+  repair: "&e/{cmd} repair [all] &8- &7repair Mending items with vault XP"
+  bottle: "&e/{cmd} bottle <levels> [amount] &8- &7fill XP into bottles"
+  menu: "&e/{cmd} menu &8- &7open the vault menu"
+  history: "&e/{cmd} history [page] &8- &7your last vault changes"
+  autopay: "&e/{cmd} autopay [on|off] &8- &7pay enchanting and anvils from the vault"
+  amounts: "&8Amount: &710 &8= levels, &7500p &8= XP points, &7all"
+  admin-header: "&8&m------&r &cAdmin &8&m------"
+  info: "&e/{cmd} info <player> &8- &7account details"
+  admin: "&e/{cmd} admin <give|take|set|reset> <player> [amount]"
+  import: "&e/{cmd} admin import &8- &7take over the accounts of XP-Deposit"
+  reload: "&e/{cmd} reload &8- &7reload the config"
+
+history:
+  usage: "&7Usage: &e/{cmd} history [player] [page]"
+  header: "&8&m------&r &bHistory: &e{player} &7({page}/{pages}) &8&m------"
+  empty: "&7No vault changes yet."
+  line: "&8{date} {change} &8(≈{levels} lvl) &7{reason}{other}"
+  plus: "&a+{xp} XP"
+  minus: "&c-{xp} XP"
+  other: " &8(&e{player}&8)"
+  next: "&8» &7More: &e/{cmd} history {page}"
+  date-format: "MM/dd HH:mm"
+  reason:
+    deposit: "deposited"
+    withdraw: "withdrawn"
+    send: "sent"
+    receive: "received"
+    auto-deposit: "auto-deposit"
+    autopay-enchant: "enchanting"
+    autopay-anvil: "anvil"
+    repair: "repair"
+    bottle: "XP bottles"
+    admin-give: "given by admin"
+    admin-take: "taken by admin"
+    admin-set: "set by admin"
+    admin-reset: "emptied by admin"
+    import: "XP-Deposit import"
+    economy: "shop / economy"
+
+auto-pay:
+  usage: "&7Usage: &e/{cmd} autopay [on|off]"
+  enabled: "&7Paying enchanting and anvils from the vault: &aon&7. Missing levels are taken from your vault."
+  disabled: "&7Paying enchanting and anvils from the vault: &coff&7."
+  off-server: "&cPaying from the vault is disabled on this server."
+  ready: "&bVault: &a+{levels} levels &7ready to use"
+  paid-enchanting: "&7Enchanting paid with &a{xp} XP&7 from your vault. Vault: &a{balance} levels"
+  paid-anvil: "&7Anvil paid with &a{xp} XP&7 from your vault. Vault: &a{balance} levels"
+
+menu:
+  title: "&8XP Vault"
+  close: "&cClose"
+  balance:
+    name: "&b&lYour XP vault"
+    vault: "&7In the vault: &a{levels} levels &8({xp} XP)"
+    limit: "&7Limit: &a{limit}"
+    withdrawable: "&7Withdrawable now: &a+{now} levels"
+    own: "&7Your level: &e{levels}"
+  deposit:
+    levels: "&a+{levels} levels &7deposit"
+    all: "&a&lDeposit everything"
+    impossible: "&8+{levels} levels &7- not enough levels"
+    all-impossible: "&8Deposit everything &7- you have no XP"
+  withdraw:
+    levels: "&6-{levels} levels &7withdraw"
+    all: "&6&lWithdraw everything"
+    impossible: "&8-{levels} levels &7- not enough in the vault"
+    all-impossible: "&8Withdraw everything &7- the vault is empty"
+  auto:
+    name: "&bAuto-deposit: {state}"
+    level: "&7From level &a{level}&7 on, your XP goes into the vault"
+    left: "&eLeft-click: &7on / off"
+    right: "&eRight-click: &7+5 levels"
+    shift-right: "&eShift + right-click: &7-5 levels"
+  auto-pay:
+    name: "&dPay enchanting & anvil: {state}"
+    lore1: "&7Missing levels at the enchanting table"
+    lore2: "&7and the anvil come from your vault."
+    click: "&eClick: &7on / off"
+  repair:
+    name: "&6Repair with vault XP"
+    left: "&eLeft-click: &7item in your hand"
+    right: "&eRight-click: &7hand, offhand and armor"
+  history:
+    name: "&fHistory"
+    click: "&eClick: &7full history"
+  top:
+    name: "&6Leaderboard"
+    click: "&eClick: &7full leaderboard"
+
+block:
+  name: "&b&lXP Vault"
+  lore1: "&7Place it and right-click it"
+  lore2: "&7to open your XP vault."
+  lore3: "&7Sneak + right-click: deposit all XP"
+  placed: "&7XP vault placed. &eRight-click&7 it to open your vault."

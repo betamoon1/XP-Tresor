@@ -1,0 +1,220 @@
+# XpTresor - mensajes en español. Colores: &a &l ... y &#rrggbb. Texto vacío = el mensaje no se envía.
+prefix: "&8[&bBóveda XP&8] &r"
+
+players-only: "&cSolo los jugadores pueden hacer eso."
+no-permission: "&cNo tienes permiso para hacer eso."
+unknown-command: "&cComando desconocido. &7/{cmd} help"
+number-invalid: "&cIntroduce un número válido."
+player-unknown: "&cEl jugador &e{player}&c no tiene cuenta."
+
+usage:
+  deposit: "&7Uso: &e/{cmd} deposit <niveles|XPp|all>"
+  withdraw: "&7Uso: &e/{cmd} withdraw <niveles|XPp|all>"
+  send: "&7Uso: &e/{cmd} send <jugador> <niveles|XPp|all>"
+  auto: "&7Uso: &e/{cmd} auto [on|off|<nivel>]"
+  repair: "&7Uso: &e/{cmd} repair [all]"
+  info: "&7Uso: &e/{cmd} info <jugador>"
+  balance: "&7Uso: &e/{cmd} balance <jugador>"
+  admin: "&7Uso: &e/{cmd} admin <give|take|set> <jugador> <niveles|XPp>&7, &e/{cmd} admin reset <jugador>&7, &e/{cmd} admin import"
+
+words:
+  enabled: "&aactivado"
+  disabled: "&cdesactivado"
+  positive: "&así"
+  negative: "&cno"
+  unlimited: "ilimitado"
+  levels: "{levels} niveles"
+  offline-default: "&8(desconectado: límite por defecto)"
+
+balance:
+  self: "&7En tu bóveda: &a{levels} niveles &8({xp} XP)"
+  self-details: "&7Puedes retirar ahora: &a+{now} niveles &8| &7Límite: &a{limit}"
+  other: "&e{player}&7 tiene &a{levels} niveles &8({xp} XP)&7 en su bóveda."
+
+deposit:
+  done: "&7Depositados &a{levels} niveles &8({xp} XP)&7. Bóveda: &a{balance} niveles"
+  partial: "&eLa bóveda está llena: depositados &a{levels} niveles &8({xp} XP)&7. Bóveda: &a{balance} niveles"
+  not-enough-levels: "&cSolo tienes &e{levels} niveles&c."
+  not-enough-points: "&cSolo tienes &e{xp} XP&c."
+  nothing: "&cNo tienes XP para depositar."
+  minimum: "&cDeposita al menos &e{levels} niveles &8({xp} XP)&c."
+  full: "&cTu bóveda está llena &8(límite {limit} niveles)&c."
+  too-much: "&cEso ya no cabe - queda espacio para &e{xp} XP&c. Consejo: &e/xpt deposit all"
+
+withdraw:
+  done: "&7Retirados &a+{levels} niveles &8({xp} XP)&7. Bóveda: &a{balance} niveles"
+  empty: "&cTu bóveda está vacía."
+  not-enough-levels: "&cNo hay suficiente en la bóveda - ahora puedes retirar &e{max} niveles&c."
+  not-enough-points: "&cLa bóveda solo tiene &e{xp} XP&c."
+
+send:
+  done: "&7Has enviado &a{xp} XP &8(≈{levels} niveles)&7 a &e{player}&7."
+  received: "&e{player} &7ha enviado &a{xp} XP &8(≈{levels} niveles)&7 a tu bóveda."
+  self: "&cNo puedes enviarte XP a ti mismo."
+  not-enough: "&cTu bóveda solo tiene &e{levels} niveles &8({xp} XP)&c."
+  receiver-full: "&cLa bóveda de &e{player}&c está demasiado llena - espacio para &e{free} XP&c."
+  offline-disabled: "&e{player}&c no está conectado."
+
+auto:
+  enabled: "&7Depósito automático &aactivado&7: a partir del nivel &a{level}&7 tu XP va a la bóveda automáticamente."
+  disabled: "&7Depósito automático &cdesactivado&7."
+  min: "&cEl nivel más bajo posible es &e{min}&c."
+  deposited: "&bDepósito automático: &a{levels} niveles &8({xp} XP) &7→ bóveda: &a{balance} niveles"
+  full: "&eDepósito automático: tu bóveda está llena &8(límite {limit} niveles)&e."
+
+repair:
+  done: "&7Reparados &a{items} objeto(s)&7 por &a{xp} XP&7 de tu bóveda."
+  partial: "&eNo hay suficiente XP en la bóveda - reparado parcialmente por &a{xp} XP&e."
+  nothing: "&cNo hay nada que reparar."
+  no-mending: "&cSolo se pueden reparar objetos con &aReparación (Mending)&c."
+  invalid: "&cSostén un objeto dañado."
+  armored-elytra: "&cLos élitros blindados solo funcionan con ArmoredElytra instalado - usa un yunque."
+  empty: "&cTu bóveda está vacía."
+  disabled: "&cReparar con XP está desactivado."
+
+bottle:
+  done: "&7Llenadas &a{amount} botella(s)&7 con &a{xp} XP &8(nivel 0→{levels})&7 cada una."
+  usage: "&7Uso: &e/{cmd} bottle <niveles|XPp> [cantidad]"
+  max: "&cComo máximo &e{max}&c botellas a la vez."
+  not-enough: "&cNecesitas &e{needed} XP&c, tu bóveda tiene &e{xp} XP&c."
+  dropped: "&eInventario lleno - algunas botellas han caído a tus pies."
+  disabled: "&cLas botellas de XP están desactivadas."
+  name: "&bBotella de XP &7({xp} XP)"
+  lore: "&7Contiene exactamente &a{xp} XP &7(nivel 0→{levels}). Lánzala para liberar la XP."
+
+top:
+  header: "&8&m------&r &bRanking de bóvedas XP &7({page}/{pages}) &8&m------"
+  line: "&7{rank}. &e{player} &8- &a{levels} niveles &8({xp} XP)"
+  empty: "&7Todavía nadie tiene XP en su bóveda."
+
+info:
+  header: "&8&m------&r &bBóveda XP: &e{player} &8&m------"
+  balance: "&7Bóveda: &a{levels} niveles &8({xp} XP)"
+  limit: "&7Límite: &a{limit}"
+  auto: "&7Depósito automático: {state} &8(desde el nivel {level})"
+  keepxp: "&7Conserva la XP al morir: {state}"
+  imported: "&7Importado de XP-Deposit: {state}"
+  uuid: "&8{uuid}"
+
+admin:
+  give: "&e{player}&7 ha recibido &a+{xp} XP &8(nivel 0→{levels})&7. Ahora: &a{balance} niveles"
+  take: "&7Quitados &c{xp} XP&7 a &e{player}&7. Ahora: &a{balance} niveles"
+  set: "&7Bóveda de &e{player}&7 establecida en &a{xp} XP &8({levels} niveles)&7."
+  reset: "&7Bóveda de &e{player}&7 vaciada."
+  not-enough: "&e{player}&c solo tiene &e{xp} XP&c en su bóveda."
+  notify-give: "&e{by}&7 ha puesto &a{xp} XP&7 en tu bóveda."
+  notify-take: "&e{by}&7 ha quitado &c{xp} XP&7 de tu bóveda."
+  notify-set: "&e{by}&7 ha establecido tu bóveda en &a{xp} XP&7."
+  notify-reset: "&e{by}&7 ha vaciado tu bóveda."
+
+import:
+  none: "&cNo se encontraron cuentas de XP-Deposit &8({folder})&c."
+  preview: "&7Encontradas &a{count} cuentas &7con &a{xp} XP &7en total &8({already} ya importadas)&7. Para importar: &e/{cmd} admin import confirm"
+  done: "&aImportadas {imported} cuentas &8({xp} XP)&7, &e{skipped}&7 ya estaban importadas."
+
+reload: "&aConfiguración y mensajes recargados."
+
+help:
+  hint: "&8» &7Todos los comandos: &e/{cmd} help"
+  header: "&8&m------&r &bBóveda XP &8&m------"
+  deposit: "&e/{cmd} deposit <cantidad> &8- &7meter XP en la bóveda"
+  withdraw: "&e/{cmd} withdraw <cantidad> &8- &7sacar XP de la bóveda"
+  balance: "&e/{cmd} balance [jugador] &8- &7¿qué hay en la bóveda?"
+  top: "&e/{cmd} top [página] &8- &7ranking"
+  send: "&e/{cmd} send <jugador> <cantidad> &8- &7enviar XP a la bóveda de alguien"
+  auto: "&e/{cmd} auto [on|off|<nivel>] &8- &7depositar automáticamente desde un nivel"
+  repair: "&e/{cmd} repair [all] &8- &7reparar objetos con Reparación usando XP de la bóveda"
+  bottle: "&e/{cmd} bottle <niveles> [cantidad] &8- &7llenar botellas con XP"
+  menu: "&e/{cmd} menu &8- &7abrir el menú de la bóveda"
+  history: "&e/{cmd} history [página] &8- &7tus últimos movimientos"
+  autopay: "&e/{cmd} autopay [on|off] &8- &7pagar encantamientos y yunques desde la bóveda"
+  amounts: "&8Cantidad: &710 &8= niveles, &7500p &8= puntos de XP, &7all &8= todo"
+  admin-header: "&8&m------&r &cAdmin &8&m------"
+  info: "&e/{cmd} info <jugador> &8- &7detalles de una cuenta"
+  admin: "&e/{cmd} admin <give|take|set|reset> <jugador> [cantidad]"
+  import: "&e/{cmd} admin import &8- &7importar las cuentas de XP-Deposit"
+  reload: "&e/{cmd} reload &8- &7recargar la configuración"
+
+history:
+  usage: "&7Uso: &e/{cmd} history [jugador] [página]"
+  header: "&8&m------&r &bHistorial: &e{player} &7({page}/{pages}) &8&m------"
+  empty: "&7Todavía no hay movimientos en la bóveda."
+  line: "&8{date} {change} &8(≈{levels} niv.) &7{reason}{other}"
+  plus: "&a+{xp} XP"
+  minus: "&c-{xp} XP"
+  other: " &8(&e{player}&8)"
+  next: "&8» &7Más: &e/{cmd} history {page}"
+  date-format: "dd/MM HH:mm"
+  reason:
+    deposit: "depositado"
+    withdraw: "retirado"
+    send: "enviado"
+    receive: "recibido"
+    auto-deposit: "depósito automático"
+    autopay-enchant: "encantamiento"
+    autopay-anvil: "yunque"
+    repair: "reparación"
+    bottle: "botellas de XP"
+    admin-give: "añadido por un admin"
+    admin-take: "quitado por un admin"
+    admin-set: "fijado por un admin"
+    admin-reset: "vaciado por un admin"
+    import: "importado de XP-Deposit"
+    economy: "tienda / economía"
+
+auto-pay:
+  usage: "&7Uso: &e/{cmd} autopay [on|off]"
+  enabled: "&7Pagar encantamientos y yunques desde la bóveda: &aactivado&7. Los niveles que falten salen de tu bóveda."
+  disabled: "&7Pagar encantamientos y yunques desde la bóveda: &cdesactivado&7."
+  off-server: "&cPagar desde la bóveda está desactivado en este servidor."
+  ready: "&bBóveda: &a+{levels} niveles &7listos para usar"
+  paid-enchanting: "&7Encantamiento pagado con &a{xp} XP&7 de tu bóveda. Bóveda: &a{balance} niveles"
+  paid-anvil: "&7Yunque pagado con &a{xp} XP&7 de tu bóveda. Bóveda: &a{balance} niveles"
+
+menu:
+  title: "&8Bóveda de XP"
+  close: "&cCerrar"
+  balance:
+    name: "&b&lTu bóveda de XP"
+    vault: "&7En la bóveda: &a{levels} niveles &8({xp} XP)"
+    limit: "&7Límite: &a{limit}"
+    withdrawable: "&7Puedes retirar ahora: &a+{now} niveles"
+    own: "&7Tu nivel: &e{levels}"
+  deposit:
+    levels: "&aDepositar +{levels} niveles"
+    all: "&a&lDepositar todo"
+    impossible: "&8+{levels} niveles &7- no tienes suficientes niveles"
+    all-impossible: "&8Depositar todo &7- no tienes XP"
+  withdraw:
+    levels: "&6Retirar -{levels} niveles"
+    all: "&6&lRetirar todo"
+    impossible: "&8-{levels} niveles &7- no hay suficiente en la bóveda"
+    all-impossible: "&8Retirar todo &7- la bóveda está vacía"
+  auto:
+    name: "&bDepósito automático: {state}"
+    level: "&7Desde el nivel &a{level}&7 tu XP va a la bóveda"
+    left: "&eClic izquierdo: &7activar / desactivar"
+    right: "&eClic derecho: &7+5 niveles"
+    shift-right: "&eShift + clic derecho: &7-5 niveles"
+  auto-pay:
+    name: "&dPagar encantar y yunque: {state}"
+    lore1: "&7Los niveles que falten en la mesa de"
+    lore2: "&7encantamientos y el yunque salen de tu bóveda."
+    click: "&eClic: &7activar / desactivar"
+  repair:
+    name: "&6Reparar con XP de la bóveda"
+    left: "&eClic izquierdo: &7objeto en la mano"
+    right: "&eClic derecho: &7mano, mano secundaria y armadura"
+  history:
+    name: "&fHistorial"
+    click: "&eClic: &7historial completo"
+  top:
+    name: "&6Clasificación"
+    click: "&eClic: &7clasificación completa"
+
+block:
+  name: "&b&lBóveda de XP"
+  lore1: "&7Colócala y haz clic derecho"
+  lore2: "&7para abrir tu bóveda de XP."
+  lore3: "&7Agachado + clic derecho: depositar toda la XP"
+  placed: "&7Bóveda de XP colocada. &eClic derecho&7 para abrir tu bóveda."
