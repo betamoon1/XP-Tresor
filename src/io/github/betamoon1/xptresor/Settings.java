@@ -7,6 +7,7 @@ import org.bukkit.entity.Player;
 import java.util.EnumMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
@@ -14,7 +15,7 @@ import java.util.Set;
 /** config.yml, read once per (re)load. */
 public final class Settings {
 
-    public enum SoundType { DEPOSIT, WITHDRAW, SEND, RECEIVE, AUTO_DEPOSIT, REPAIR, BOTTLE }
+    public enum SoundType { DEPOSIT, WITHDRAW, SEND, RECEIVE, AUTO_DEPOSIT, REPAIR, BOTTLE, MENU_CLICK, AUTO_PAY }
 
     public final String language;
     public final boolean perPlayerLanguage;
@@ -37,6 +38,17 @@ public final class Settings {
     public final int topSize;
     public final Set<String> hiddenInTop = new HashSet<>();
     public final boolean legacyBottles;
+    public final int historyMax;
+    public final boolean autoPayEnabled;
+    public final boolean autoPayEnchanting;
+    public final boolean autoPayAnvil;
+    public final boolean autoPayDefault;
+    public final boolean menuOnCommand;
+    public final boolean blockEnabled;
+    public final boolean blockRecipe;
+    public final List<String> blockShape;
+    public final Map<Character, String> blockIngredients = new LinkedHashMap<>();
+    public final boolean blockSneakDeposit;
 
     Settings(FileConfiguration c) {
         language = c.getString("language", "en").toLowerCase(Locale.ROOT);
@@ -67,6 +79,20 @@ public final class Settings {
         vaultInPoints = "points".equalsIgnoreCase(c.getString("vault-economy.unit", "levels"));
         topSize = Math.max(1, Math.min(100, c.getInt("top.size", 10)));
         for (String n : c.getStringList("top.hidden")) hiddenInTop.add(n.toLowerCase(Locale.ROOT));
+        historyMax = Math.max(0, Math.min(1000, c.getInt("history.max-entries", 50)));
+        autoPayEnabled = c.getBoolean("auto-pay.enabled", true);
+        autoPayEnchanting = c.getBoolean("auto-pay.enchanting", true);
+        autoPayAnvil = c.getBoolean("auto-pay.anvil", true);
+        autoPayDefault = c.getBoolean("auto-pay.on-by-default", true);
+        menuOnCommand = c.getBoolean("menu.open-on-command", true);
+        blockEnabled = c.getBoolean("vault-block.enabled", true);
+        blockRecipe = c.getBoolean("vault-block.recipe.enabled", true);
+        blockShape = c.getStringList("vault-block.recipe.shape");
+        ConfigurationSection ing = c.getConfigurationSection("vault-block.recipe.ingredients");
+        if (ing != null) {
+            for (String k : ing.getKeys(false)) if (k.length() == 1) blockIngredients.put(k.charAt(0), ing.getString(k));
+        }
+        blockSneakDeposit = c.getBoolean("vault-block.sneak-deposits-all", true);
     }
 
     /** Storage limit of this player in points, Long.MAX_VALUE = unlimited. */

@@ -1,6 +1,7 @@
 package io.github.betamoon1.xptresor;
 
 import io.github.betamoon1.xptresor.AccountStore.Account;
+import io.github.betamoon1.xptresor.AccountStore.Reason;
 import io.github.betamoon1.xptresor.Settings.SoundType;
 import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.Bukkit;
@@ -157,7 +158,7 @@ public final class Services implements Listener {
             partial = true;
         }
         Xp.set(player, have - points);
-        store().add(account, points);
+        store().add(account, points, Reason.DEPOSIT, null);
         int levels = levelBefore - player.getLevel();
         m().send(player, partial ? "deposit.partial" : "deposit.done", "levels", levels, "xp", fmt(points),
                 "balance", Xp.levelOf(account.xp()));
@@ -192,7 +193,7 @@ public final class Services implements Listener {
             }
         }
         int levelBefore = player.getLevel();
-        if (!store().add(account, -points)) return;
+        if (!store().add(account, -points, Reason.WITHDRAW, null)) return;
         autoBlockedUntil.put(player.getUniqueId(), System.currentTimeMillis() + 1500);
         Xp.set(player, have + points);
         m().send(player, "withdraw.done", "levels", player.getLevel() - levelBefore, "xp", fmt(points),
@@ -266,6 +267,7 @@ public final class Services implements Listener {
      */
     public void autoDeposit(Player player, int oldLevel, int newLevel) {
         if (!player.isOnline() || !player.hasPermission("xptresor.auto")) return;
+        if (plugin.autoPay().isActive(player)) return; // XP lent for enchanting/anvil is not "gained"
         Long blocked = autoBlockedUntil.get(player.getUniqueId());
         if (blocked != null && System.currentTimeMillis() < blocked) return;
         Account account = store().get(player.getUniqueId());
@@ -287,7 +289,7 @@ public final class Services implements Listener {
         long points = Math.min(have, room);
         int levelBefore = player.getLevel();
         Xp.set(player, have - points);
-        store().add(account, points);
+        store().add(account, points, Reason.AUTO_DEPOSIT, null);
         m().actionBar(player, "auto.deposited", "levels", levelBefore - player.getLevel(), "xp", fmt(points),
                 "balance", Xp.levelOf(account.xp()));
         sound(player, SoundType.AUTO_DEPOSIT);
@@ -367,7 +369,7 @@ public final class Services implements Listener {
             m().send(player, key);
             return;
         }
-        store().add(account, -used);
+        store().add(account, -used, Reason.REPAIR, null);
         m().send(player, stillDamaged ? "repair.partial" : "repair.done", "items", repairedItems, "xp", fmt(used));
         sound(player, SoundType.REPAIR);
     }
@@ -413,7 +415,7 @@ public final class Services implements Listener {
             m().send(player, "bottle.not-enough", "xp", fmt(account.xp()), "needed", fmt(total));
             return;
         }
-        if (!store().add(account, -total)) return;
+        if (!store().add(account, -total, Reason.BOTTLE, null)) return;
         ItemStack bottles = createBottle((int) xpEach, count);
         Map<Integer, ItemStack> leftover = player.getInventory().addItem(bottles);
         if (!leftover.isEmpty()) {
@@ -445,6 +447,29 @@ public final class Services implements Listener {
         Integer xp = pdc.get(bottleKey, PersistentDataType.INTEGER);
         if (xp == null && s().legacyBottles && LEGACY_BOTTLE != null) xp = pdc.get(LEGACY_BOTTLE, PersistentDataType.INTEGER);
         if (xp != null && xp > 0) event.setExperience(xp);
+    }
+
+    // ------------------------------------------------------------------ history
+
+    /** History lines (newest first) formatted for {@code viewer}, entries [from, from + count). */
+    public java.util.List<String> historyLines(org.bukkit.command.CommandSender viewer, Account account, int from, int count) {
+        java.util.List<AccountStore.Entry> entries = store().history(account);
+        java.util.List<String> out = new java.util.ArrayList<>();
+        java.text.SimpleDateFormat date;
+        try {
+            date = new java.text.SimpleDateFormat(m().raw(viewer, "history.date-format"));
+        } catch (IllegalArgumentException e) {
+            date = new java.text.SimpleDateFormat("dd.MM. HH:mm");
+        }
+        for (int i = from; i < Math.min(entries.size(), from + count); i++) {
+            AccountStore.Entry e = entries.get(i);
+            long abs = Math.abs(e.points());
+            String change = m().raw(viewer, e.points() >= 0 ? "history.plus" : "history.minus", "xp", fmt(abs));
+            String other = e.other() == null ? "" : m().raw(viewer, "history.other", "player", e.other());
+            out.add(m().raw(viewer, "history.line", "date", date.format(new java.util.Date(e.time())), "change", change,
+                    "levels", Xp.levelOf(abs), "reason", m().raw(viewer, e.reason().key()), "other", other));
+        }
+        return out;
     }
 
     // ------------------------------------------------------------------ helpers for commands

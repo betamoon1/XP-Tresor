@@ -1,12 +1,12 @@
 # XpTresor
 
-**A personal XP vault for every player.** Store your experience safely, take it back whenever you need it, send it to friends, let it fill up automatically, repair your gear with it, or bottle it up exactly.
+**A personal XP vault for every player.** Store your experience safely, take it back whenever you need it, pay enchanting and anvils straight from it, send it to friends, let it fill up automatically, repair your gear with it, or bottle it up exactly. With a click menu and a placeable vault block.
 
 XpTresor is made for Paper servers and has no required dependencies.
 
 - **Author:** betamoon
 - **License:** MIT, see [LICENSE](LICENSE)
-- **Version:** 1.1.1
+- **Version:** 1.2.0 (see [CHANGELOG](CHANGELOG.md))
 
 ---
 
@@ -15,6 +15,8 @@ XpTresor is made for Paper servers and has no required dependencies.
 - [Requirements](#requirements)
 - [Installation](#installation)
 - [How amounts work](#how-amounts-work)
+- [Menu and vault block](#menu-and-vault-block)
+- [Paying enchanting and anvils from the vault](#paying-enchanting-and-anvils-from-the-vault)
 - [Commands](#commands)
 - [Permissions](#permissions)
 - [Configuration](#configuration)
@@ -29,6 +31,12 @@ XpTresor is made for Paper servers and has no required dependencies.
 ---
 
 ## Features
+
+**New in 1.2.0**
+- **Vault menu.** `/xpt` opens a menu: deposit and withdraw with one click, switch auto-deposit and auto-pay, repair, history and leaderboard.
+- **Pay enchanting and anvils from the vault.** If your own levels are not enough, the missing levels come straight from your vault. No withdrawing first.
+- **History.** `/xpt history` shows every change of your vault: deposits, withdrawals, sent and received XP, auto-pay, admin changes and more.
+- **Vault block.** A craftable vault block for your base: right-click opens your vault menu, sneak + right-click deposits all your XP.
 
 **XP management**
 - **Deposit and withdraw** XP as levels, exact XP points or everything at once.
@@ -72,12 +80,62 @@ XpTresor is made for Paper servers and has no required dependencies.
 
 ## Installation
 
-1. Put `XpTresor-1.1.1.jar` into your `plugins` folder.
+1. Put `XpTresor-1.2.0.jar` into your `plugins` folder.
 2. Restart the server. `/reload` is not supported.
 3. Edit `plugins/XpTresor/config.yml` to your liking. In particular, set `language`, `limit` and `keep-xp-on-death`.
 4. Run `/xpt reload` to apply the changes.
 
 Players can use XpTresor right away, because all player features are allowed by default. See [Permissions](#permissions) to change that.
+
+---
+
+## Menu and vault block
+
+**The menu** opens with `/xpt` (or `/xpt menu`):
+
+| Button | What it does |
+|---|---|
+| Experience bottle (top) | Your vault, limit, how many levels you could withdraw and your own level |
+| Green dyes / green block | Deposit 1, 5, 10, 20, 30 levels or everything |
+| Orange dyes / orange block | Withdraw 1, 5, 10, 20, 30 levels or everything |
+| Hopper | Auto-deposit: left-click on/off, right-click +5 levels, shift + right-click -5 levels |
+| Enchanting table | Pay enchanting and anvils from the vault: on/off |
+| Anvil | Repair: left-click the item in your hand, right-click hand, offhand and armor |
+| Book | Your last 5 changes; click for the full history |
+| Gold ingot | Top 5; click for the full leaderboard |
+
+Buttons you can't use right now (not enough levels, empty vault) are greyed out. Buttons for features you have no permission for are hidden. With `menu.open-on-command: false`, `/xpt` shows the balance as text like before.
+
+**The vault block** is crafted like this (changeable in the config):
+
+```
+Iron block   Diamond             Iron block
+Diamond      Bottle o' Enchanting Diamond
+Iron block   Obsidian            Iron block
+```
+
+- **Right-click:** opens your vault menu.
+- **Sneak + right-click:** deposits all your XP at once.
+- **Your own vault:** like an ender chest, every player uses their own vault with the same block. The block holds no XP itself.
+- **Breaking:** the block drops itself again. It can't be blown up.
+- The block looks like the trial chamber vault, but never acts like one, so trial keys do nothing.
+
+---
+
+## Paying enchanting and anvils from the vault
+
+Minecraft only lets you click an enchantment or take an anvil result if you already have the levels. With auto-pay, XpTresor does the withdrawing for you:
+
+- **When you open an enchanting table or anvil,** the levels you are missing are lent from your vault, so the buttons become clickable. You see them right away in your level bar.
+- **When you enchant or take the anvil result,** the cost is paid from the lent XP first, then from your own.
+- **When you close the menu,** everything that was not used goes back into your vault.
+
+The result is exactly the same as withdrawing the missing levels by hand first. A cheap enchantment never costs the expensive levels at the top: when you click an offer, only what that offer needs stays lent.
+
+- **Example:** You are level 5 and want an enchantment that needs level 8 and costs 1 level. The vault pays the XP of that 1 level, and you are still level 5 afterwards.
+- **Switch it off for yourself** with `/xpt autopay off` or in the menu. Server owners can turn it off completely, or only for enchanting or the anvil, in the config.
+- **What the vault paid** shows up in chat and in `/xpt history`.
+- **Safe:** if you leave, die or the server stops while the table is open, the lent XP goes back into the vault first. Auto-deposit ignores lent XP.
 
 ---
 
@@ -116,7 +174,11 @@ Every subcommand has an English name and a German alias. All player features are
 
 | Command | Aliases | Description | Permission |
 |---|---|---|---|
-| `/xpt` | | Shows your vault and a hint to the help | `xptresor.balance` |
+| `/xpt` | | Opens the vault menu (or shows your vault as text, see `menu.open-on-command`) | `xptresor.menu` |
+| `/xpt menu` | `gui`, `menü` | Opens the vault menu | `xptresor.menu` |
+| `/xpt history [page]` | `verlauf`, `log` | Your last vault changes | `xptresor.history` |
+| `/xpt history <player> [page]` | | Another player's history | `xptresor.history.others` |
+| `/xpt autopay [on\|off]` | `autobezahlen` | Pay enchanting and anvils from the vault | `xptresor.autopay` |
 | `/xpt help` | `hilfe`, `?` | Shows all commands you are allowed to use | none |
 | `/xpt deposit <amount>` | `einzahlen`, `ein`, `d` | Put XP into your vault | `xptresor.deposit` |
 | `/xpt withdraw <amount>` | `abheben`, `ab`, `w` | Take XP out of your vault | `xptresor.withdraw` |
@@ -152,7 +214,7 @@ These also work from the console.
 - The affected player is notified if they are online.
 - Admin commands work for offline players who already have an account.
 
-**Console:** `/xpt balance <player>`, `/xpt top`, `/xpt info`, `/xpt admin …` and `/xpt reload` work from the console. Everything else needs a player.
+**Console:** `/xpt balance <player>`, `/xpt top`, `/xpt history <player>`, `/xpt info`, `/xpt admin …` and `/xpt reload` work from the console. Everything else needs a player.
 
 ---
 
@@ -162,8 +224,8 @@ These also work from the console.
 
 | Permission | Default | Includes |
 |---|---|---|
-| `xptresor.player` | everyone | `deposit`, `withdraw`, `balance`, `top`, `send`, `auto`, `repair`, `bottle` |
-| `xptresor.admin` | op | `xptresor.player`, `balance.others`, `admin.info`, `admin.modify`, `admin.import`, `reload` |
+| `xptresor.player` | everyone | `deposit`, `withdraw`, `balance`, `top`, `send`, `auto`, `repair`, `bottle`, `menu`, `history`, `autopay`, `block` |
+| `xptresor.admin` | op | `xptresor.player`, `balance.others`, `history.others`, `admin.info`, `admin.modify`, `admin.import`, `reload` |
 | `xptresor.*` | nobody | `xptresor.admin`, `limit.unlimited`, `keepxp` |
 
 ### All permissions
@@ -179,6 +241,11 @@ These also work from the console.
 | `xptresor.auto` | everyone | `/xpt auto` and the automatic deposit itself |
 | `xptresor.repair` | everyone | `/xpt repair` |
 | `xptresor.bottle` | everyone | `/xpt bottle` |
+| `xptresor.menu` | everyone | The vault menu (`/xpt`, `/xpt menu`) |
+| `xptresor.history` | everyone | `/xpt history` (own history) |
+| `xptresor.history.others` | op | `/xpt history <player>` |
+| `xptresor.autopay` | everyone | Pay enchanting and anvils from the vault |
+| `xptresor.block` | everyone | Use the vault block |
 | `xptresor.keepxp` | nobody | Keep all XP on death. Only works if `keep-xp-on-death: true` is set in the config. |
 | `xptresor.limit.<rank>` | nobody | Higher vault limit. The ranks are set under `limit.ranks` in the config. |
 | `xptresor.limit.unlimited` | op | No vault limit at all |
@@ -208,7 +275,12 @@ If a player has more than one rank permission, the **highest** limit counts.
 
 `plugins/XpTresor/config.yml`, apply changes with `/xpt reload`. Exception: `vault-economy` needs a restart.
 
+New settings are added to your existing `config.yml` automatically when you update, with their comments. Your own values are never changed.
+
 ```yaml
+# Do not change - used to add new settings after plugin updates
+config-version: 2
+
 # Default language: en, de, es, fr, it, nl, pl, pt, ru, tr
 language: en
 
@@ -243,6 +315,38 @@ send:
   # Allow /xpt send to players that are offline (their account must exist)
   to-offline-players: true
 
+# /xpt (without anything) opens the vault menu. false = /xpt shows the balance as text (menu: /xpt menu)
+menu:
+  open-on-command: true
+
+# Pay enchanting and the anvil from the vault (players switch it with /xpt autopay)
+auto-pay:
+  enabled: true
+  enchanting: true
+  anvil: true
+  # Is it on for players who never switched it?
+  on-by-default: true
+
+history:
+  # Entries kept per player (0 = no history)
+  max-entries: 50
+
+# Right-click = vault menu, sneak + right-click = deposit all XP. Permission: xptresor.block
+vault-block:
+  enabled: true
+  sneak-deposits-all: true
+  recipe:
+    enabled: true
+    shape:
+      - "IDI"
+      - "DBD"
+      - "IOI"
+    ingredients:
+      I: IRON_BLOCK
+      D: DIAMOND
+      B: EXPERIENCE_BOTTLE
+      O: OBSIDIAN
+
 repair:
   enabled: true
   # Only items with Mending can be repaired (like vanilla Mending)
@@ -266,6 +370,8 @@ sounds:
   auto-deposit: block.amethyst_block.chime
   repair: block.anvil.use
   bottle: item.bottle.fill
+  menu-click: ui.button.click
+  auto-pay: block.enchantment_table.use
 
 top:
   # Entries per page in /xpt top
@@ -410,7 +516,8 @@ aliases:
 
 ## Data storage
 
-- **Accounts:** `plugins/XpTresor/players/<uuid>.yml`, one small file per player. It holds the name, XP, auto-deposit settings and import status.
+- **Accounts:** `plugins/XpTresor/players/<uuid>.yml`, one small file per player. It holds the name, XP, auto-deposit and auto-pay settings, the history and the import status.
+- **Vault blocks** are marked in the block itself. Nothing extra is stored.
 - **When it is saved:** Every change is written immediately, so a crash can't lose deposits.
 - **Plugins that clean up player data,** e.g. AFK-bot plugins, can delete `XpTresor/players/{uuid}.yml`.
 
@@ -422,7 +529,10 @@ aliases:
 Levels at a high level are worth more XP than levels near 0. The vault counts from level 0, like an XP bottle. The XP points are always exact; the levels are only a display. When you withdraw, you get exactly the XP back.
 
 **Can players lose XP?**
-No. Deposits, withdrawals, transfers and repairs always move the exact XP points. Every change is saved immediately.
+No. Deposits, withdrawals, transfers and repairs always move the exact XP points. Every change is saved immediately. XP lent for enchanting or the anvil goes back into the vault when the menu closes, when the player leaves or dies, and when the server stops.
+
+**Can I see where XP went?**
+Yes: `/xpt history`, and for admins `/xpt history <player>`. The last 50 changes per player are kept (`history.max-entries`).
 
 **Do AFK bots show up in the leaderboard?**
 No. Players with the `NPC` metadata never get an account. You can hide any other name with `top.hidden`.

@@ -15,6 +15,10 @@ public final class XpTresor extends JavaPlugin {
     private Messages messages;
     private AccountStore store;
     private Services services;
+    private AutoPay autoPay;
+    private TresorMenu menu;
+    private TresorBlock block;
+    private TresorCommand command;
 
     @Override
     public void onEnable() {
@@ -23,15 +27,22 @@ public final class XpTresor extends JavaPlugin {
         store = new AccountStore(this);
         store.loadAll();
         services = new Services(this);
+        autoPay = new AutoPay(this);
+        menu = new TresorMenu(this);
+        block = new TresorBlock(this);
+        command = new TresorCommand(this);
+        block.loadRecipe();
 
         Bukkit.getPluginManager().registerEvents(new PlayerListener(this), this);
         Bukkit.getPluginManager().registerEvents(services, this);
+        Bukkit.getPluginManager().registerEvents(autoPay, this);
+        Bukkit.getPluginManager().registerEvents(menu, this);
+        Bukkit.getPluginManager().registerEvents(block, this);
 
-        PluginCommand command = getCommand("xptresor");
-        if (command != null) {
-            TresorCommand executor = new TresorCommand(this);
-            command.setExecutor(executor);
-            command.setTabCompleter(executor);
+        PluginCommand pc = getCommand("xptresor");
+        if (pc != null) {
+            pc.setExecutor(command);
+            pc.setTabCompleter(command);
         }
 
         for (Player p : Bukkit.getOnlinePlayers()) {
@@ -62,10 +73,20 @@ public final class XpTresor extends JavaPlugin {
         }
     }
 
+    @Override
+    public void onDisable() {
+        // lent enchanting/anvil XP goes back into the vaults before the server stops
+        if (autoPay != null) autoPay.endAll();
+        if (menu != null) menu.closeAll();
+        if (block != null) block.unloadRecipe();
+    }
+
     void loadSettings() {
         reloadConfig();
+        ConfigUpdater.update(this);
         settings = new Settings(getConfig());
         messages = new Messages(this, settings.language.toLowerCase(Locale.ROOT), settings.perPlayerLanguage);
+        if (block != null) block.loadRecipe(); // /xpt reload
     }
 
     public Settings settings() {
@@ -82,6 +103,22 @@ public final class XpTresor extends JavaPlugin {
 
     public Services services() {
         return services;
+    }
+
+    AutoPay autoPay() {
+        return autoPay;
+    }
+
+    TresorMenu menu() {
+        return menu;
+    }
+
+    TresorBlock block() {
+        return block;
+    }
+
+    TresorCommand command() {
+        return command;
     }
 
     /** AFK bots and other NPCs (common convention: metadata "NPC") get no account. */

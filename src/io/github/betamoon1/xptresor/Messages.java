@@ -129,6 +129,11 @@ public final class Messages {
         return LEGACY.deserialize(raw(key, placeholders));
     }
 
+    /** Component in the language of this receiver. */
+    public Component component(CommandSender who, String key, Object... placeholders) {
+        return LEGACY.deserialize(raw(who, key, placeholders));
+    }
+
     public static Component colored(String text) {
         return LEGACY.deserialize(text);
     }

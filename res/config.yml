@@ -1,5 +1,8 @@
 # XpTresor by betamoon
 # After changes: /xpt reload  (vault-economy needs a restart)
+
+# Do not change - used to add new settings after plugin updates
+config-version: 2
 #
 # Amounts in commands:
 #   10    = 10 levels      500p = 500 XP points      all = everything
@@ -43,6 +46,44 @@ send:
   # Allow /xpt send to players that are offline (their account must exist)
   to-offline-players: true
 
+# /xpt (without anything) opens the vault menu: deposit, withdraw, auto-deposit, repair, history with a click.
+# false = /xpt shows the balance as text like before (the menu is still there with /xpt menu).
+menu:
+  open-on-command: true
+
+# Pay enchanting and the anvil from the vault: if a player's own levels are not enough, the missing
+# levels are taken from the vault (exactly as if the player had withdrawn them first).
+# Players can switch it for themselves with /xpt autopay (permission xptresor.autopay).
+auto-pay:
+  enabled: true
+  enchanting: true
+  anvil: true
+  # Is it on for players who never switched it?
+  on-by-default: true
+
+# /xpt history - the last changes of every vault (deposits, withdrawals, sent XP, auto-pay, admin changes ...)
+history:
+  # Entries kept per player (0 = no history)
+  max-entries: 50
+
+# The XP vault as a block: a craftable vault block. Right-click = vault menu, sneak + right-click = deposit all XP.
+# Every player uses their OWN vault with it (like an ender chest). Permission: xptresor.block
+vault-block:
+  enabled: true
+  sneak-deposits-all: true
+  recipe:
+    enabled: true
+    # 3 rows of 3 letters, the letters are explained under ingredients
+    shape:
+      - "IDI"
+      - "DBD"
+      - "IOI"
+    ingredients:
+      I: IRON_BLOCK
+      D: DIAMOND
+      B: EXPERIENCE_BOTTLE
+      O: OBSIDIAN
+
 # /xpt repair [all] - repair the held item (or held + offhand + armor) with XP from the vault
 repair:
   enabled: true
@@ -68,6 +109,8 @@ sounds:
   auto-deposit: block.amethyst_block.chime
   repair: block.anvil.use
   bottle: item.bottle.fill
+  menu-click: ui.button.click
+  auto-pay: block.enchantment_table.use
 
 top:
   # Entries per page in /xpt top

@@ -1,10 +1,10 @@
 name: XpTresor
-version: 1.1.1
+version: 1.2.0
 main: io.github.betamoon1.xptresor.XpTresor
 api-version: '1.21'
 author: betamoon
 website: https://github.com/betamoon1/XpTresor
-description: A personal XP vault for every player - deposit, withdraw, send, auto-deposit, repair with XP and exact XP bottles.
+description: A personal XP vault for every player - menu, vault block, pay enchanting and anvils from the vault, history, auto-deposit, repair with XP and exact XP bottles.
 softdepend: [Vault, PlaceholderAPI, ArmoredElytra]
 
 commands:
@@ -26,12 +26,17 @@ permissions:
       xptresor.auto: true
       xptresor.repair: true
       xptresor.bottle: true
+      xptresor.menu: true
+      xptresor.history: true
+      xptresor.autopay: true
+      xptresor.block: true
   xptresor.admin:
     description: All admin commands.
     default: op
     children:
       xptresor.player: true
       xptresor.balance.others: true
+      xptresor.history.others: true
       xptresor.admin.info: true
       xptresor.admin.modify: true
       xptresor.admin.import: true
@@ -70,6 +75,21 @@ permissions:
     default: true
   xptresor.bottle:
     description: /xpt bottle - fill stored XP into bottles
+    default: true
+  xptresor.menu:
+    description: /xpt menu - the vault menu
+    default: true
+  xptresor.history:
+    description: /xpt history - own history
+    default: true
+  xptresor.history.others:
+    description: /xpt history <player>
+    default: op
+  xptresor.autopay:
+    description: Pay enchanting and anvils from the vault (/xpt autopay)
+    default: true
+  xptresor.block:
+    description: Use the XP vault block
     default: true
   xptresor.keepxp:
     description: Keep XP on death (only if keep-xp-on-death is enabled in the config)

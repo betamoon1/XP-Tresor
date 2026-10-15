@@ -111,7 +111,7 @@ final class VaultEconomy implements Economy {
         if (a == null) return new EconomyResponse(0, 0, ResponseType.FAILURE, "No account");
         if (amount < 0) return new EconomyResponse(0, balance(a), ResponseType.FAILURE, "Negative amount");
         long points = toPoints(amount);
-        if (!plugin.store().add(a, -points)) {
+        if (!plugin.store().add(a, -points, AccountStore.Reason.ECONOMY, null)) {
             return new EconomyResponse(0, balance(a), ResponseType.FAILURE, "Not enough XP");
         }
         return new EconomyResponse(amount, balance(a), ResponseType.SUCCESS, null);
@@ -128,7 +128,7 @@ final class VaultEconomy implements Economy {
     private EconomyResponse deposit(Account a, double amount) {
         if (a == null) return new EconomyResponse(0, 0, ResponseType.FAILURE, "No account");
         if (amount < 0) return new EconomyResponse(0, balance(a), ResponseType.FAILURE, "Negative amount");
-        plugin.store().add(a, toPoints(amount));
+        plugin.store().add(a, toPoints(amount), AccountStore.Reason.ECONOMY, null);
         return new EconomyResponse(amount, balance(a), ResponseType.SUCCESS, null);
     }
 

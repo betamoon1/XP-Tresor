@@ -28,6 +28,9 @@ final class TresorCommand implements TabExecutor {
         AUTO("auto", "autodeposit"),
         REPAIR("repair", "reparieren", "rep"),
         BOTTLE("bottle", "flasche", "bot"),
+        MENU("menu", "gui", "menü", "menue"),
+        HISTORY("history", "verlauf", "log"),
+        AUTOPAY("autopay", "auto-pay", "autobezahlen"),
         INFO("info", "i"),
         ADMIN("admin"),
         RELOAD("reload");
@@ -54,6 +57,9 @@ final class TresorCommand implements TabExecutor {
             Map.entry(Sub.AUTO, "xptresor.auto"),
             Map.entry(Sub.REPAIR, "xptresor.repair"),
             Map.entry(Sub.BOTTLE, "xptresor.bottle"),
+            Map.entry(Sub.MENU, "xptresor.menu"),
+            Map.entry(Sub.HISTORY, "xptresor.history"),
+            Map.entry(Sub.AUTOPAY, "xptresor.autopay"),
             Map.entry(Sub.INFO, "xptresor.admin.info"),
             Map.entry(Sub.ADMIN, "xptresor.admin.modify"),
             Map.entry(Sub.RELOAD, "xptresor.reload"));
@@ -61,7 +67,8 @@ final class TresorCommand implements TabExecutor {
     /** Names shown in tab completion when the language is German. */
     private static final Map<Sub, String> GERMAN = Map.of(
             Sub.DEPOSIT, "einzahlen", Sub.WITHDRAW, "abheben", Sub.BALANCE, "kontostand",
-            Sub.SEND, "senden", Sub.REPAIR, "reparieren", Sub.BOTTLE, "flasche");
+            Sub.SEND, "senden", Sub.REPAIR, "reparieren", Sub.BOTTLE, "flasche", Sub.HISTORY, "verlauf",
+            Sub.MENU, "menü");
 
     private final XpTresor plugin;
 
@@ -80,7 +87,9 @@ final class TresorCommand implements TabExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (args.length == 0) {
-            if (sender instanceof Player p && p.hasPermission("xptresor.balance")) {
+            if (sender instanceof Player p && plugin.settings().menuOnCommand && p.hasPermission("xptresor.menu")) {
+                plugin.menu().open(p);
+            } else if (sender instanceof Player p && p.hasPermission("xptresor.balance")) {
                 showOwnBalance(p);
                 m().plain(p, "help.hint", "cmd", label);
             } else {
@@ -109,6 +118,7 @@ final class TresorCommand implements TabExecutor {
             case BALANCE -> balance(sender, args, label);
             case TOP -> top(sender, args);
             case INFO -> info(sender, args, label);
+            case HISTORY -> history(sender, args, label);
             case ADMIN -> {
                 if (importCmd) runImport(sender, args, label);
                 else admin(sender, args, label);
@@ -146,6 +156,8 @@ final class TresorCommand implements TabExecutor {
                 else services().send(player, args[1], a);
             }
             case AUTO -> auto(player, args, label);
+            case MENU -> plugin.menu().open(player);
+            case AUTOPAY -> autoPay(player, args, label);
             case REPAIR -> {
                 boolean all = args.length == 2 && (args[1].equalsIgnoreCase("all") || args[1].equalsIgnoreCase("alle"));
                 if (args.length > 2 || (args.length == 2 && !all)) m().send(player, "usage.repair", "cmd", label);
@@ -254,6 +266,89 @@ final class TresorCommand implements TabExecutor {
         m().plain(sender, "info.uuid", "uuid", a.id());
     }
 
+    // ------------------------------------------------------------------ history
+
+    /** /xpt history [page] or /xpt history <player> [page] */
+    private void history(CommandSender sender, String[] args, String label) {
+        Account target = null;
+        int page = 1;
+        int index = 1;
+        if (args.length > index && !isNumber(args[index])) {
+            if (!sender.hasPermission("xptresor.history.others")) {
+                m().send(sender, "no-permission");
+                return;
+            }
+            target = services().findAccount(args[index]);
+            if (target == null) {
+                m().send(sender, "player-unknown", "player", args[index]);
+                return;
+            }
+            index++;
+        }
+        if (args.length > index) {
+            if (!isNumber(args[index])) {
+                m().send(sender, "history.usage", "cmd", label);
+                return;
+            }
+            page = Integer.parseInt(args[index]);
+        }
+        if (target == null) {
+            if (!(sender instanceof Player p)) {
+                m().send(sender, "history.usage", "cmd", label);
+                return;
+            }
+            target = plugin.store().getOrCreate(p.getUniqueId(), p.getName());
+        }
+        showHistory(sender, target, page, label);
+    }
+
+    private static boolean isNumber(String s) {
+        if (s.isEmpty() || s.length() > 6) return false;
+        for (char c : s.toCharArray()) if (!Character.isDigit(c)) return false;
+        return true;
+    }
+
+    void showHistory(CommandSender sender, Account account, int page, String label) {
+        final int size = 10;
+        int total = plugin.store().history(account).size();
+        if (total == 0) {
+            m().send(sender, "history.empty");
+            return;
+        }
+        int pages = (total + size - 1) / size;
+        page = Math.max(1, Math.min(pages, page));
+        m().plain(sender, "history.header", "player", account.name(), "page", page, "pages", pages);
+        for (String line : services().historyLines(sender, account, (page - 1) * size, size)) {
+            sender.sendMessage(Messages.colored(line));
+        }
+        if (page < pages) m().plain(sender, "history.next", "cmd", label, "page", page + 1);
+    }
+
+    // ------------------------------------------------------------------ auto-pay
+
+    private void autoPay(Player player, String[] args, String label) {
+        if (!plugin.settings().autoPayEnabled) {
+            m().send(player, "auto-pay.off-server");
+            return;
+        }
+        Account a = plugin.store().getOrCreate(player.getUniqueId(), player.getName());
+        boolean on;
+        if (args.length == 1) {
+            on = !plugin.autoPay().isOn(player);
+        } else {
+            switch (args[1].toLowerCase(Locale.ROOT)) {
+                case "on", "an" -> on = true;
+                case "off", "aus" -> on = false;
+                default -> {
+                    m().send(player, "auto-pay.usage", "cmd", label);
+                    return;
+                }
+            }
+        }
+        plugin.store().setAutoPay(a, on);
+        m().send(player, on ? "auto-pay.enabled" : "auto-pay.disabled");
+    }
+
     // ------------------------------------------------------------------ auto deposit
 
     private void auto(Player player, String[] args, String label) {
@@ -347,15 +442,15 @@ final class TresorCommand implements TabExecutor {
         AccountStore store = plugin.store();
         String by = sender instanceof Player p ? p.getName() : "Console";
         switch (action) {
-            case "give" -> store.add(a, points);
+            case "give" -> store.add(a, points, AccountStore.Reason.ADMIN_GIVE, by);
             case "take" -> {
-                if (!store.add(a, -points)) {
+                if (!store.add(a, -points, AccountStore.Reason.ADMIN_TAKE, by)) {
                     m().send(sender, "admin.not-enough", "player", a.name(), "xp", Services.fmt(a.xp()));
                     return;
                 }
             }
-            case "set" -> store.setXp(a, points);
-            default -> store.setXp(a, 0);
+            case "set" -> store.setXp(a, points, AccountStore.Reason.ADMIN_SET, by);
+            default -> store.setXp(a, 0, AccountStore.Reason.ADMIN_RESET, by);
         }
         Object[] ph = {"player", a.name(), "by", by, "xp", Services.fmt(points), "levels", Xp.levelOf(points),
                 "balance", Xp.levelOf(a.xp()), "balancexp", Services.fmt(a.xp())};
@@ -400,6 +495,9 @@ final class TresorCommand implements TabExecutor {
                 {"xptresor.auto", "help.auto"},
                 {"xptresor.repair", "help.repair"},
                 {"xptresor.bottle", "help.bottle"},
+                {"xptresor.menu", "help.menu"},
+                {"xptresor.history", "help.history"},
+                {"xptresor.autopay", "help.autopay"},
         };
         for (String[] l : lines) if (sender.hasPermission(l[0])) m().plain(sender, l[1], "cmd", label);
         m().plain(sender, "help.amounts");
@@ -444,6 +542,15 @@ final class TresorCommand implements TabExecutor {
                 }
                 case AUTO -> {
                     if (args.length == 2) out.addAll(german ? List.of("an", "aus", "30") : List.of("on", "off", "30"));
+                }
+                case AUTOPAY -> {
+                    if (args.length == 2) out.addAll(german ? List.of("an", "aus") : List.of("on", "off"));
+                }
+                case HISTORY -> {
+                    if (args.length == 2) {
+                        out.add("2");
+                        if (sender.hasPermission("xptresor.history.others")) known(out);
+                    }
                 }
                 case REPAIR -> {
                     if (args.length == 2) out.add(german ? "alle" : "all");
