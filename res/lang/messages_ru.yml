@@ -1,0 +1,226 @@
+# XpTresor - сообщения на русском. Цвета: &a &l ... и &#rrggbb. Пустой текст = сообщение не отправляется.
+prefix: "&8[&bСейф опыта&8] &r"
+
+players-only: "&cЭто может сделать только игрок."
+no-permission: "&cУ тебя нет на это прав."
+unknown-command: "&cНеизвестная команда. &7/{cmd} help"
+number-invalid: "&cВведи правильное число."
+player-unknown: "&cУ игрока &e{player}&c нет счёта."
+
+usage:
+  deposit: "&7Использование: &e/{cmd} deposit <уровни|XPp|all>"
+  withdraw: "&7Использование: &e/{cmd} withdraw <уровни|XPp|all>"
+  send: "&7Использование: &e/{cmd} send <игрок> <уровни|XPp|all>"
+  auto: "&7Использование: &e/{cmd} auto [on|off|<уровень>]"
+  repair: "&7Использование: &e/{cmd} repair [all]"
+  info: "&7Использование: &e/{cmd} info <игрок>"
+  balance: "&7Использование: &e/{cmd} balance <игрок>"
+  admin: "&7Использование: &e/{cmd} admin <give|take|set> <игрок> <уровни|XPp>&7, &e/{cmd} admin reset <игрок>&7, &e/{cmd} admin import"
+
+words:
+  enabled: "&aвкл."
+  disabled: "&cвыкл."
+  positive: "&aда"
+  negative: "&cнет"
+  unlimited: "без ограничений"
+  levels: "{levels} ур."
+  offline-default: "&8(не в сети: стандартный лимит)"
+
+balance:
+  self: "&7В твоём сейфе: &a{levels} ур. &8({xp} опыта)"
+  self-details: "&7Можно снять сейчас: &a+{now} ур. &8| &7Лимит: &a{limit}"
+  other: "&7У &e{player}&7 в сейфе &a{levels} ур. &8({xp} опыта)&7."
+
+deposit:
+  done: "&7Внесено &a{levels} ур. &8({xp} опыта)&7. В сейфе: &a{balance} ур."
+  partial: "&eСейф заполнен: внесено &a{levels} ур. &8({xp} опыта)&7. В сейфе: &a{balance} ур."
+  not-enough-levels: "&cУ тебя только &e{levels} ур.&c"
+  not-enough-points: "&cУ тебя только &e{xp} опыта&c."
+  nothing: "&cУ тебя нет опыта для внесения."
+  minimum: "&cВнеси минимум &e{levels} ур. &8({xp} опыта)&c."
+  full: "&cТвой сейф заполнен &8(лимит {limit} ур.)&c."
+  too-much: "&cСтолько уже не поместится - есть место для &e{xp} опыта&c. Совет: &e/xpt deposit all"
+
+withdraw:
+  done: "&7Снято &a+{levels} ур. &8({xp} опыта)&7. В сейфе: &a{balance} ур."
+  empty: "&cТвой сейф пуст."
+  not-enough-levels: "&cВ сейфе недостаточно - сейчас можно снять &e{max} ур.&c"
+  not-enough-points: "&cВ сейфе только &e{xp} опыта&c."
+
+send:
+  done: "&7Ты отправил &e{player} &a{xp} опыта &8(≈{levels} ур.)&7."
+  received: "&e{player} &7отправил &a{xp} опыта &8(≈{levels} ур.)&7 в твой сейф."
+  self: "&cНельзя отправить опыт самому себе."
+  not-enough: "&cВ твоём сейфе только &e{levels} ур. &8({xp} опыта)&c."
+  receiver-full: "&cСейф игрока &e{player}&c переполнен - место для &e{free} опыта&c."
+  offline-disabled: "&e{player}&c не в сети."
+
+auto:
+  enabled: "&7Автовнесение &aвключено&7: начиная с уровня &a{level}&7 твой опыт автоматически уходит в сейф."
+  disabled: "&7Автовнесение &cвыключено&7."
+  min: "&cМинимально возможный уровень: &e{min}&c."
+  deposited: "&bАвтовнесение: &a{levels} ур. &8({xp} опыта) &7→ сейф: &a{balance} ур."
+  full: "&eАвтовнесение: твой сейф заполнен &8(лимит {limit} ур.)&e."
+
+repair:
+  done: "&7Починено предметов: &a{items}&7 за &a{xp} опыта&7 из сейфа."
+  partial: "&eВ сейфе мало опыта - частично починено за &a{xp} опыта&e."
+  nothing: "&cНечего чинить."
+  no-mending: "&cЧинить можно только предметы с &aПочинкой (Mending)&c."
+  invalid: "&cВозьми в руку повреждённый предмет."
+  armored-elytra: "&cБронированные элитры работают только с установленным ArmoredElytra - используй наковальню."
+  empty: "&cТвой сейф пуст."
+  disabled: "&cПочинка опытом отключена."
+
+bottle:
+  done: "&7Наполнено бутылок: &a{amount}&7, в каждой &a{xp} опыта &8(уровень 0→{levels})&7."
+  usage: "&7Использование: &e/{cmd} bottle <уровни|XPp> [количество]"
+  max: "&cНе больше &e{max}&c бутылок за раз."
+  not-enough: "&cНужно &e{needed} опыта&c, в сейфе &e{xp} опыта&c."
+  dropped: "&eИнвентарь полон - часть бутылок упала тебе под ноги."
+  disabled: "&cБутылки опыта отключены."
+  name: "&bБутылка опыта &7({xp} опыта)"
+  lore: "&7Содержит ровно &a{xp} опыта &7(уровень 0→{levels}). Брось, чтобы высвободить опыт."
+
+top:
+  header: "&8&m------&r &bРейтинг сейфов опыта &7({page}/{pages}) &8&m------"
+  line: "&7{rank}. &e{player} &8- &a{levels} ур. &8({xp} опыта)"
+  empty: "&7Пока ни у кого нет опыта в сейфе."
+
+info:
+  header: "&8&m------&r &bСейф опыта: &e{player} &8&m------"
+  balance: "&7Сейф: &a{levels} ур. &8({xp} опыта)"
+  limit: "&7Лимит: &a{limit}"
+  auto: "&7Автовнесение: {state} &8(с уровня {level})"
+  keepxp: "&7Сохраняет опыт при смерти: {state}"
+  imported: "&7Перенесено из XP-Deposit: {state}"
+  uuid: "&8{uuid}"
+
+admin:
+  give: "&e{player}&7 получил &a+{xp} опыта &8(уровень 0→{levels})&7. Теперь: &a{balance} ур."
+  take: "&7У &e{player}&7 забрано &c{xp} опыта&7. Теперь: &a{balance} ур."
+  set: "&7Сейф игрока &e{player}&7 установлен на &a{xp} опыта &8({levels} ур.)&7."
+  reset: "&7Сейф игрока &e{player}&7 очищен."
+  not-enough: "&cУ &e{player}&c в сейфе только &e{xp} опыта&c."
+  notify-give: "&e{by}&7 положил &a{xp} опыта&7 в твой сейф."
+  notify-take: "&e{by}&7 забрал &c{xp} опыта&7 из твоего сейфа."
+  notify-set: "&e{by}&7 установил твой сейф на &a{xp} опыта&7."
+  notify-reset: "&e{by}&7 очистил твой сейф."
+
+import:
+  none: "&cСчета XP-Deposit не найдены &8({folder})&c."
+  preview: "&7Найдено &a{count} счетов &7с общим опытом &a{xp} &8({already} уже перенесено)&7. Для переноса: &e/{cmd} admin import confirm"
+  done: "&aПеренесено счетов: {imported} &8({xp} опыта)&7, &e{skipped}&7 уже были перенесены."
+
+reload: "&aКонфигурация и сообщения перезагружены."
+
+help:
+  hint: "&8» &7Все команды: &e/{cmd} help"
+  header: "&8&m------&r &bСейф опыта &8&m------"
+  deposit: "&e/{cmd} deposit <кол-во> &8- &7положить опыт в сейф"
+  withdraw: "&e/{cmd} withdraw <кол-во> &8- &7снять опыт из сейфа"
+  balance: "&e/{cmd} balance [игрок] &8- &7что в сейфе?"
+  top: "&e/{cmd} top [страница] &8- &7рейтинг"
+  send: "&e/{cmd} send <игрок> <кол-во> &8- &7отправить опыт в чужой сейф"
+  auto: "&e/{cmd} auto [on|off|<уровень>] &8- &7автовнесение с выбранного уровня"
+  repair: "&e/{cmd} repair [all] &8- &7починить предметы с Починкой опытом из сейфа"
+  bottle: "&e/{cmd} bottle <уровни> [кол-во] &8- &7разлить опыт по бутылкам"
+  menu: "&e/{cmd} menu &8- &7открыть меню сейфа"
+  history: "&e/{cmd} history [страница] &8- &7последние операции"
+  autopay: "&e/{cmd} autopay [on|off] &8- &7оплачивать зачарование и наковальню из сейфа"
+  recipe: "&e/{cmd} recipe &8- &7как скрафтить блок сейфа"
+  amounts: "&8Кол-во: &710 &8= уровни, &7500p &8= очки опыта, &7all &8= всё"
+  admin-header: "&8&m------&r &cАдмин &8&m------"
+  info: "&e/{cmd} info <игрок> &8- &7подробности счёта"
+  admin: "&e/{cmd} admin <give|take|set|reset> <игрок> [кол-во]"
+  import: "&e/{cmd} admin import &8- &7перенести счета из XP-Deposit"
+  reload: "&e/{cmd} reload &8- &7перезагрузить конфигурацию"
+
+history:
+  usage: "&7Использование: &e/{cmd} history [игрок] [страница]"
+  header: "&8&m------&r &bИстория: &e{player} &7({page}/{pages}) &8&m------"
+  empty: "&7В сейфе пока не было операций."
+  line: "&8{date} {change} &8(≈{levels} ур.) &7{reason}{other}"
+  plus: "&a+{xp} опыта"
+  minus: "&c-{xp} опыта"
+  other: " &8(&e{player}&8)"
+  next: "&8» &7Дальше: &e/{cmd} history {page}"
+  date-format: "dd.MM HH:mm"
+  reason:
+    deposit: "внесено"
+    withdraw: "снято"
+    send: "отправлено"
+    receive: "получено"
+    auto-deposit: "автовзнос"
+    autopay-enchant: "зачарование"
+    autopay-anvil: "наковальня"
+    repair: "починка"
+    bottle: "пузырьки опыта"
+    admin-give: "выдано админом"
+    admin-take: "забрано админом"
+    admin-set: "установлено админом"
+    admin-reset: "очищено админом"
+    import: "импорт из XP-Deposit"
+    economy: "магазин / экономика"
+
+auto-pay:
+  usage: "&7Использование: &e/{cmd} autopay [on|off]"
+  enabled: "&7Оплата зачарования и наковальни из сейфа: &aвкл&7. Недостающие уровни берутся из сейфа."
+  disabled: "&7Оплата зачарования и наковальни из сейфа: &cвыкл&7."
+  off-server: "&cОплата из сейфа отключена на этом сервере."
+  ready: "&bСейф: &a+{levels} ур. &7готово к использованию"
+  paid-enchanting: "&7Зачарование оплачено: &a{xp} опыта&7 из сейфа. В сейфе: &a{balance} ур."
+  paid-anvil: "&7Наковальня оплачена: &a{xp} опыта&7 из сейфа. В сейфе: &a{balance} ур."
+
+menu:
+  title: "&8Сейф опыта"
+  close: "&cЗакрыть"
+  balance:
+    name: "&b&lТвой сейф опыта"
+    vault: "&7В сейфе: &a{levels} ур. &8({xp} опыта)"
+    limit: "&7Лимит: &a{limit}"
+    withdrawable: "&7Можно снять сейчас: &a+{now} ур."
+    own: "&7Твой уровень: &e{levels}"
+  deposit:
+    levels: "&aВнести +{levels} ур."
+    all: "&a&lВнести всё"
+    impossible: "&8+{levels} ур. &7- не хватает уровней"
+    all-impossible: "&8Внести всё &7- у тебя нет опыта"
+  withdraw:
+    levels: "&6Снять -{levels} ур."
+    all: "&6&lСнять всё"
+    impossible: "&8-{levels} ур. &7- в сейфе недостаточно"
+    all-impossible: "&8Снять всё &7- сейф пуст"
+  auto:
+    name: "&bАвтовзнос: {state}"
+    level: "&7С уровня &a{level}&7 опыт уходит в сейф"
+    left: "&eЛКМ: &7вкл / выкл"
+    right: "&eПКМ: &7+5 ур."
+    shift-right: "&eShift + ПКМ: &7-5 ур."
+  auto-pay:
+    name: "&dОплата зачарования и наковальни: {state}"
+    lore1: "&7Недостающие уровни для стола зачарования"
+    lore2: "&7и наковальни берутся из сейфа."
+    click: "&eКлик: &7вкл / выкл"
+  repair:
+    name: "&6Починить опытом из сейфа"
+    left: "&eЛКМ: &7предмет в руке"
+    right: "&eПКМ: &7рука, вторая рука и броня"
+  history:
+    name: "&fИстория"
+    click: "&eКлик: &7вся история"
+  top:
+    name: "&6Рейтинг"
+    click: "&eКлик: &7весь рейтинг"
+
+block:
+  name: "&b&lСейф опыта"
+  lore1: "&7Поставь его и нажми ПКМ,"
+  lore2: "&7чтобы открыть свой сейф опыта."
+  lore3: "&7Присесть + ПКМ: внести весь опыт"
+  placed: "&7Сейф опыта установлен. &eПКМ&7 открывает твой сейф."
+
+recipe:
+  title: "&8Рецепт: блок сейфа опыта"
+  arrow: "&e→"
+  disabled: "&cБлок сейфа нельзя скрафтить на этом сервере."

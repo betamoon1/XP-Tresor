@@ -1,0 +1,125 @@
+# XpTresor by betamoon
+# After changes: /xpt reload  (vault-economy needs a restart)
+
+# Do not change - used to add new settings after plugin updates
+config-version: 2
+#
+# Amounts in commands:
+#   10    = 10 levels      500p = 500 XP points      all = everything
+# Deposit/withdraw use YOUR current levels (depositing 10 at level 50 takes you to level 40).
+# The vault itself is shown in "levels from 0" - like XP bottles: 30 levels = what you need from 0 to 30.
+
+# Default language: en, de, es, fr, it, nl, pl, pt, ru, tr
+# The files are in plugins/XpTresor/lang/ and can be edited. Your own language: copy messages_en.yml
+# to e.g. messages_cs.yml, translate it, /xpt reload - it can then be used here as "cs".
+language: en
+
+# true = every player gets the messages in the language of their Minecraft client (if that language
+# exists in lang/), everything else (console, item names) uses the default language above.
+per-player-language: true
+
+# XP every new account starts with (in levels from 0)
+start-balance-levels: 0
+
+deposit:
+  # Smallest deposit in levels from 0 (0 = no minimum)
+  min-levels: 0
+
+# Maximum content of a vault, in levels from 0. -1 = unlimited.
+# Higher limits per permission: xptresor.limit.<rank>   (the highest one counts)
+# No limit at all: xptresor.limit.unlimited
+limit:
+  default: 120
+  ranks:
+    vip: 240
+    mod: 360
+
+auto-deposit:
+  # /xpt auto <level>: as soon as a player reaches this level, all of their XP goes into the vault.
+  # Lowest level players can choose:
+  min-level: 5
+
+# Players with the permission xptresor.keepxp keep their XP on death (nothing drops)
+keep-xp-on-death: false
+
+send:
+  # Allow /xpt send to players that are offline (their account must exist)
+  to-offline-players: true
+
+# /xpt (without anything) opens the vault menu: deposit, withdraw, auto-deposit, repair, history with a click.
+# false = /xpt shows the balance as text like before (the menu is still there with /xpt menu).
+menu:
+  open-on-command: true
+
+# Pay enchanting and the anvil from the vault: if a player's own levels are not enough, the missing
+# levels are taken from the vault (exactly as if the player had withdrawn them first).
+# Players can switch it for themselves with /xpt autopay (permission xptresor.autopay).
+auto-pay:
+  enabled: true
+  enchanting: true
+  anvil: true
+  # Is it on for players who never switched it?
+  on-by-default: true
+
+# /xpt history - the last changes of every vault (deposits, withdrawals, sent XP, auto-pay, admin changes ...)
+history:
+  # Entries kept per player (0 = no history)
+  max-entries: 50
+
+# The XP vault as a block: a craftable vault block. Right-click = vault menu, sneak + right-click = deposit all XP.
+# Every player uses their OWN vault with it (like an ender chest). Permission: xptresor.block
+vault-block:
+  enabled: true
+  sneak-deposits-all: true
+  recipe:
+    enabled: true
+    # 3 rows of 3 letters, the letters are explained under ingredients
+    shape:
+      - "IDI"
+      - "DBD"
+      - "IOI"
+    ingredients:
+      I: IRON_BLOCK
+      D: DIAMOND
+      B: EXPERIENCE_BOTTLE
+      O: OBSIDIAN
+
+# /xpt repair [all] - repair the held item (or held + offhand + armor) with XP from the vault
+repair:
+  enabled: true
+  # Only items with Mending can be repaired (like vanilla Mending)
+  require-mending: true
+  # Durability per XP point (vanilla Mending: 2)
+  durability-per-xp: 2
+
+# /xpt bottle <levels> [amount] - XP bottles that release exactly the stored XP when thrown
+bottle:
+  enabled: true
+  max-amount: 64
+  # Bottles made with the old XP-Deposit plugin keep releasing their exact XP
+  accept-xp-deposit-bottles: true
+
+# Sound keys: https://minecraft.wiki/w/Sounds.json  (e.g. entity.experience_orb.pickup), empty = no sound
+sounds:
+  enabled: true
+  deposit: block.amethyst_block.chime
+  withdraw: entity.experience_orb.pickup
+  send: entity.experience_orb.pickup
+  receive: entity.player.levelup
+  auto-deposit: block.amethyst_block.chime
+  repair: block.anvil.use
+  bottle: item.bottle.fill
+  menu-click: ui.button.click
+  auto-pay: block.enchantment_table.use
+
+top:
+  # Entries per page in /xpt top
+  size: 10
+  # Names that never show up in /xpt top
+  hidden: []
+
+# Make the vault the server economy via Vault (for shops etc.)
+vault-economy:
+  enabled: false
+  # levels = currency is levels from 0, points = currency is XP points
+  unit: levels
