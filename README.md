@@ -1,4 +1,4 @@
-# XpTresor
+# Xp-Tresor
 
 **A personal XP vault for every player.** Store your experience safely, take it back whenever you need it, pay enchanting and anvils straight from it, send it to friends, let it fill up automatically, repair your gear with it, or bottle it up exactly. With a click menu and a placeable vault block.
 
